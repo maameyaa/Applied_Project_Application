@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title> PrepApp-Lesson||Revision</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+
+
+<body onload="getContent()">
+  <nav class="light-blue lighten-1" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo"><i class="large material-icons right">cloud</i> </a>
+      <ul class="right hide-on-med-and-down">
+        <li><a class='dropdown-button btn' href="#" data-activates='dropdown1' color='light-blue'>Menu</a></li>
+
+        <!-- Drop down menu -->
+        <ul id='dropdown1' class='dropdown-content'>
+          <li><a href="dashboard.html">Dashboard</a></li>
+          <li><a href="profile.html">Profile</a></li>
+          <li><a href="lessons.html">Lessons</a></li>
+          <li><a href="timer.html">Teaching </a></li>
+          <li><a href="assesment.html">Coahing</a></li>
+          <li class="divider"></li>
+          <li><a href="logout.html">Logout</a></li>
+        </ul>
+      </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+         <li><a href="dashboard.html">Dashboard</a></li>
+          <li><a href="profile.html">Profile</a></li>
+          <li><a href="lessons.html">Lessons</a></li>
+          <li><a href="timer.html">Teaching </a></li>
+          <li><a href="assesment.html">Coahing</a></li>
+          <li><a href="logout.html">Logout</a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="section">
+
+    <h5>Lesson</h5>
+
+    <div class='wd'> </div>
+
+      <center><div id="divStatus" class="status"></div></center>
+
+      <div class="row">
+        <div class="col s12 m6">
+          <div class="card  darken-1">
+            <div class="card-content black-text">
+              <span class="card-title">Revision</span>
+             <div class = "revision"></div>
+             <div class="card-action">
+              <a href="#">Start Timer <i class="material-icons">av_timer</i></a>
+              
+            </div>
+            </div>
+          </div>
+        </div>
+       </div>
+       <br></br>
+       <br></br>
+       <br></br><br></br>
+   </div>
+   </div>
+
+  
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
+  <script type="text/javascript">
+
+  var lesson_id = sessionStorage.lid;
+
+    function getContent(){
+       getWeekDay();
+       getRevision();
+       getLessonPrep();
+    }
+
+    function getWeekDay(){
+        var ajaxPageUrl="lessonajax.php?cmd=4&lid="+lesson_id+"";
+
+        $.ajax(ajaxPageUrl,
+          {async:true,
+           complete:getWeekDayComplete});
+    }
+
+    function getRevision(){
+        var ajaxPageUrl="lessonajax.php?cmd=7&lid="+lesson_id+"";
+
+        $.ajax(ajaxPageUrl,
+          {async:true,
+           complete:getRevisionComplete});
+    }
+
+
+    function getLessonPrep(){
+        var ajaxPageUrl="lessonajax.php?cmd=6&lid="+lesson_id+"";
+
+        $.ajax(ajaxPageUrl,
+          {async:true,
+           complete:getLessonPrepComplete});
+    }
+
+    function getWeekDayComplete(xhr,status){
+      if(status!="success"){
+
+            $('#divStatus').html("Error while getting lessons");
+
+         return;    
+         }
+
+          var obj=$.parseJSON(xhr.responseText);
+          console.log(obj);
+
+
+          if(obj.result==0){
+
+          $('#divStatus').html("Error getting lesson");
+          return;
+
+          }
+
+          else{
+              $('.wd').append
+              ("<span>Week "+obj.week+" Day "+obj.day+"</span>"
+                );
+            }
+    }
+
+    function getRevisionComplete(xhr,status){
+      if(status!="success"){
+
+            $('#divStatus').html("Error while getting lessons");
+
+         return;    
+         }
+
+          var obj=$.parseJSON(xhr.responseText);
+
+          console.log(obj);
+
+
+          if(obj.result==0){
+
+          $('#divStatus').html("Error getting lesson");
+          return;
+
+          }
+
+          else{
+
+              $('.revision').append
+
+              
+              ("<p> "+obj[0].content+"</p>");
+              
+            }
+    }
+
+    function getLessonPrepComplete(xhr,status){
+      if(status!="success"){
+
+            $('#divStatus').html("Error while getting lessons");
+
+         return;    
+         }
+
+          var obj=$.parseJSON(xhr.responseText);
+
+          console.log(obj);
+
+
+          if(obj.result==0){
+
+          $('#divStatus').html("Error getting lesson");
+          return;
+
+          }
+
+          else{
+
+              $('.lesson_prep').append
+
+              ("<p> "+obj[0].content+"</p>");
+
+            }
+    }
+    </script>
+  </body>
+
+   <footer class="light-blue darken-1">
+          <div class="footer-copyright" >
+            <div class="container">
+
+            <div class="row"> 
+              <div class="col s8">
+              <a href ="openlesson.html" class="waves-effect waves-light btn">Back</a>
+              </div>
+
+              <div class="col s4">
+
+                <a class="right"><a href ="lessoncontent3.html" class="waves-effect waves-light btn">Next</a>
+              </div>
+            </div>
+            
+          </div>
+  </footer>
+</html>
