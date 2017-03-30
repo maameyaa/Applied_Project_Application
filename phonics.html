@@ -3,7 +3,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-  <title> PrepApp-Lesson||Phonemic</title>
+  <title> MTLP ||  Phonics</title>
 
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -46,29 +46,86 @@
   <div class="container">
     <div class="section">
 
-    <h5>Lesson</h5>
+    <div class=lang></div>
 
     <div class='wd'> </div>
 
       <center><div id="divStatus" class="status"></div></center>
 
       <div class="row">
-        <div class="col s12 m6">
+        <div class="col s12 m12">
           <div class="card  darken-1">
             <div class="card-content black-text">
-              <span class="card-title">Phonemic Awareness</span>
-             <div class = "revision"></div>
-             <div class="card-action">
-              <a href="#">Start Timer <i class="material-icons">av_timer</i></a>
-              
-            </div>
+              <span class="card-title">Phonics</span>
+             <div class = "part1"></div>
             </div>
           </div>
         </div>
        </div>
-       <br></br>
-       <br></br>
-       <br></br><br></br>
+
+       <div class="row">
+        <div class="col s4 m4">
+            <div class="card horizontal">
+              <div class="card-image">
+                <img src="img/i_do.jpg">
+              </div>
+              <div class="card-stacked">
+                <div class="card-content">
+                   <h5 class="header">I do</h5>
+                  <div class = "i_do"></div>
+                </div>
+              </div> 
+            </div> 
+        </div>
+        <div class="col s4 m4">
+          
+            <div class="card horizontal">
+              <div class="card-image">
+                <img src="img/we_do.jpg">
+              </div>
+              <div class="card-stacked">
+                <div class="card-content">
+                  <h5 class="header">We do</h5>
+                  <div class = "we_do"></div>
+                </div>
+              </div> 
+            </div> 
+        </div>
+        <div class="col s4 m4">
+            <div class="card horizontal">
+              <div class="card-image">
+                <img src="img/you_do.jpg">
+              </div>
+              <div class="card-stacked">
+                <div class="card-content">
+                  <h5 class="header">You do</h5>
+                  <p class = "you_do"></p>
+                </div>
+              </div> 
+            </div> 
+        </div>
+       </div>
+
+       <div class="row">
+        <div class="col s12 m12">
+          <div class="card  darken-1">
+            <div class="card-content black-text">
+             <div class = "part2"></div>
+            </div>
+          </div>
+        </div>
+       </div>
+
+       <div class="row">
+        <div class="col s12 m12">
+          <div class="card  darken-1">
+            <div class="card-content black-text">
+             <span class="card-title">Teacher's Notes</span>
+             <div class = "teachersnotes"></div>
+            </div>
+          </div>
+        </div>
+       </div>
    </div>
    </div>
 
@@ -80,11 +137,12 @@
   <script type="text/javascript">
 
   var lesson_id = sessionStorage.lid;
+  var lang = sessionStorage.lang;
+ 
 
     function getContent(){
        getWeekDay();
-       getRevision();
-       getLessonPrep();
+       getPhonics();
     }
 
     function getWeekDay(){
@@ -95,22 +153,14 @@
            complete:getWeekDayComplete});
     }
 
-    function getRevision(){
-        var ajaxPageUrl="lessonajax.php?cmd=7&lid="+lesson_id+"";
+    function getPhonics(){
+        var ajaxPageUrl="lessonajax.php?cmd=15&lid="+lesson_id+"";
 
         $.ajax(ajaxPageUrl,
           {async:true,
-           complete:getRevisionComplete});
+           complete:getPhonicsComplete});
     }
 
-
-    function getLessonPrep(){
-        var ajaxPageUrl="lessonajax.php?cmd=6&lid="+lesson_id+"";
-
-        $.ajax(ajaxPageUrl,
-          {async:true,
-           complete:getLessonPrepComplete});
-    }
 
     function getWeekDayComplete(xhr,status){
       if(status!="success"){
@@ -119,7 +169,6 @@
 
          return;    
          }
-
           var obj=$.parseJSON(xhr.responseText);
           console.log(obj);
 
@@ -135,13 +184,16 @@
               $('.wd').append
               ("<span>Week "+obj.week+" Day "+obj.day+"</span>"
                 );
+              $('.lang').append
+              ("<h5> "+sessionStorage.lang+" Lesson</h5>"
+                );
             }
     }
 
-    function getRevisionComplete(xhr,status){
+    function getPhonicsComplete(xhr,status){
       if(status!="success"){
 
-            $('#divStatus').html("Error while getting lessons");
+            $('#divStatus').html("Error while getting Phonemic");
 
          return;    
          }
@@ -153,49 +205,33 @@
 
           if(obj.result==0){
 
-          $('#divStatus').html("Error getting lesson");
+          $('#divStatus').html("Error getting phonemic");
           return;
 
           }
 
           else{
 
-              $('.revision').append
+               $('.part1').append
+               ("<p style='white-space: pre-line; text-align: justify;'> "+obj[0].part1+"</p>");
 
-              
-              ("<p> "+obj[0].content+"</p>");
-              
+               $('.i_do').append
+               ("<p style='white-space: pre-line;'> "+obj[0].i_do+"</p>");
+
+               $('.we_do').append
+               ("<p style='white-space: pre-line;'> "+obj[0].we_do+"</p>");
+
+               $('.you_do').append
+               ("<p style='white-space: pre-line;'> "+obj[0].you_do+"</p>");
+
+               $('.part2').append
+               ("<p style='white-space: pre-line; text-align: justify;'> "+obj[0].part2+"</p>");
+
+               $('.teachersnotes').append
+               ("<p style='white-space: pre-line; text-align: justify;'> "+obj[0].teachers_notes+"</p>");
+           
             }
-    }
-
-    function getLessonPrepComplete(xhr,status){
-      if(status!="success"){
-
-            $('#divStatus').html("Error while getting lessons");
-
-         return;    
-         }
-
-          var obj=$.parseJSON(xhr.responseText);
-
-          console.log(obj);
-
-
-          if(obj.result==0){
-
-          $('#divStatus').html("Error getting lesson");
-          return;
-
-          }
-
-          else{
-
-              $('.lesson_prep').append
-
-              ("<p> "+obj[0].content+"</p>");
-
-            }
-    }
+        }
     </script>
   </body>
 
@@ -205,11 +241,11 @@
 
             <div class="row"> 
               <div class="col s8">
-                <a href ="lessoncontent2.html" class="waves-effect waves-light btn">Back</a>
+                <a href ="phonemic.html" class="waves-effect waves-light btn">Back</a>
               </div>
 
               <div class="col s4">
-                <a href ="lessoncontent4.html" class="waves-effect waves-light btn">Next</a>
+                <a href ="reading_comp.html" class="waves-effect waves-light btn">Next</a>
               </div>
             </div>
             

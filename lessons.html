@@ -5,7 +5,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-  <title> PrepApp-Lessons</title>
+  <title>  MTLP || Lessons</title>
 
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -90,6 +90,7 @@
        getTwilessons();
        getEnglessons();
     }
+
     function getTwilessons(){
         var ajaxPageUrl="lessonajax.php?cmd=2&lang=Twi";
 
@@ -97,6 +98,7 @@
           {async:true,
            complete:getTwilessonscomplete});
     }
+
     function getEnglessons(){
         var ajaxPageUrl="lessonajax.php?cmd=2&lang=English";
 
@@ -130,12 +132,11 @@
 
             for(var i=0; i<length; i++){
               $('.twi-row').append
-              ("<a id='"+i+"'>"+ "<div onclick='clicked("+obj[i].lesson_id+")' class='rowgrid'"+"<h3 class=''>Lesson "+count+":  Week "+obj[i].week+" Day "+obj[i].day+ "</h5>"
+              ("<a id='"+i+"'>"+ "<div onclick='clicked("+obj[i].lesson_id+",&apos;"+obj[i].language+"&apos;)' class='rowgrid'"+"<h3 class=''>Lesson "+count+":  Week "+obj[i].week+" Day "+obj[i].day+ "</h5>"
                 )
               count ++;
             }
           }
-
     }
 
     function getEnglessonscomplete(xhr,status){
@@ -162,8 +163,9 @@
             var count=1;
 
             for(var i=0; i<length; i++){
+              // alert(obj[i].language);
               $('.eng-row').append
-              ("<a id='"+i+"'>"+ "<div onclick='clicked("+obj[i].lesson_id+")' class='rowgrid'"+"<h3 class=''>Lesson "+count+":  Week "+obj[i].week+" Day "+obj[i].day+"</h5>"
+              ("<a id='"+i+"'>"+ "<div onclick='clicked("+obj[i].lesson_id+",&apos;"+obj[i].language+"&apos;)' class='rowgrid'"+"<h3 class=''>Lesson "+count+":  Week "+obj[i].week+" Day "+obj[i].day+"</h5>"
                 )
               count ++;
             }
@@ -171,13 +173,17 @@
 
     }
 
-    function clicked(lid){
+    function clicked(lid, lang){
       var lesson_id = lid;
+      var lang = lang;
 
       sessionStorage.lid=lesson_id;
+      sessionStorage.lang=lang;
+
+      alert(sessionStorage.lang);
 
       window.location.href ="openlesson.html";
     }
-  </script>
+   </script>
   </body>
 </html>

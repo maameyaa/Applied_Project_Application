@@ -22,7 +22,7 @@ class lessons extends adb{
 	*/
 	function getlessons($filter=false){
 
-		$strQuery="SELECT * FROM  lessons_plan";
+		$strQuery="SELECT * FROM  lessons";
 		
 		if($filter){
 			$strQuery=$strQuery . " where $filter";
@@ -65,7 +65,7 @@ class lessons extends adb{
 	}
 
 	function getWeekDay($id){
-		$strQuery="SELECT * from lessons_plan where lesson_id = '$id'";
+		$strQuery="SELECT * from lessons where lesson_id = '$id'";
 		return $this->query($strQuery);
 	}
 
@@ -75,7 +75,11 @@ class lessons extends adb{
 	}
 
 	function getLessonPrep($id){
-		$strQuery="SELECT lesson_prep.content from lesson_prep where lesson_prep.lesson_id ='$id'";
+		$strQuery="SELECT lesson_prep.text from lesson_prep where lesson_prep.lesson_id ='$id'";
+		return $this->query($strQuery);
+	}
+	function getLcbd($id){
+		$strQuery="SELECT * from lcbd where lcbd.lesson_id ='$id'";
 		return $this->query($strQuery);
 	}
 
@@ -91,9 +95,49 @@ class lessons extends adb{
 
 
 	function getvocabAudio($id){
-		$strQuery="SELECT * from vocab_audio where vocab_audio.lesson_id ='$id'";
+		$strQuery="SELECT * from vocabulary where vocabulary.lesson_id ='$id'";
 		return $this->query($strQuery);
 	}
+
+	function getsightWords($id){
+		$strQuery="SELECT * from sight_words where sight_words.lesson_id ='$id'";
+		return $this->query($strQuery);
+	}
+
+	function getPhonics($id){
+		$strQuery="SELECT * from phonics where phonics.lesson_id ='$id'";
+		return $this->query($strQuery);
+	}
+
+	function getReadingComp($id){
+		$strQuery="SELECT * from reading_comp where reading_comp.lesson_id ='$id'";
+		return $this->query($strQuery);
+	}
+
+	function getFluency($id){
+		$strQuery="SELECT * from fluency where fluency.lesson_id ='$id'";
+		return $this->query($strQuery);
+	}
+
+	function getvocablesson($id){
+		$strQuery="SELECT * from vocabulary_lesson where vocabulary_lesson.lesson_id ='$id'";
+		return $this->query($strQuery);
+	}
+
+	function getComprehension($id){
+		$strQuery="SELECT * from comprehension where comprehension.lesson_id ='$id'";
+		return $this->query($strQuery);
+	}
+
+	function getWriting($id){
+		$strQuery="SELECT * from writing where writing.lesson_id ='$id'";
+		return $this->query($strQuery);
+	}
+	function getlookingAhead($id){
+		$strQuery="SELECT * from looking_ahead where looking_ahead.lesson_id ='$id'";
+		return $this->query($strQuery);
+	}
+
 
 
 

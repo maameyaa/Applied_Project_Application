@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8-"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-  <title> PrepApp-Lesson</title>
+  <title> MTLP || Lesson</title>
 
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -48,14 +48,14 @@
   <div class="container">
     <div class="section">
 
-      <h5>Lesson</h5>
+    <div class=lang></div>
 
       <div class='wd'> </div>
 
       <div id="divStatus" class="status"></div>
 
       <div class="row">
-        <div class="col s12 m6">
+        <div class="col s12 m12">
           <div class="card  darken-1">
             <div class="card-content black-text">
               <span class="card-title">Objectives</span>
@@ -67,7 +67,7 @@
       
 
      <div class="row">
-        <div class="col s12 m6">
+        <div class="col s12 m12">
           <div class="card  darken-1">
             <div class="card-content black-text">
               <span class="card-title">Lesson Preparation</span>
@@ -75,23 +75,51 @@
             </div>
           </div>
         </div>
-    </div>
+     </div>
 
-     <center><div class="row">
-        <div class="col s12 m6">
-          <div class="card">
-            <div class="card-content black-text">
-              <span class="card-title">Vocabulary</span>
-              <div id="vocab" class = "vocab"></div>
+     <div class= "twi_lcbd">
+       <div class="row">
+          <div class="col s12 m12">
+            <div class="card  darken-1">
+              <div class="card-content black-text">
+                <span class="card-title">Letters, Consonant Blends or Digraph</span>
+                 <div class = "lcbd"></div>
+              </div>
+            </div>
+          </div>
+       </div>
+      </div>
+
+     <div class = "twi_sight_words">
+       <div class="row">
+          <div class="col s12 m12">
+            <div class="card  darken-1">
+              <div class="card-content black-text">
+                <span class="card-title">Sight Words</span>
+                 <div class = "sight_words"></div>
+              </div>
+            </div>
+          </div>
+       </div>
+      </div>
+
+      <div class = "eng_vocab">
+       <center><div class="row">
+          <div class="col s12 m12">
+            <div class="card">
+              <div class="card-content black-text">
+                <span class="card-title">Vocabulary</span>
+                <div id="vocab" class = "vocab"></div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-   </center>
+      </center>
+    </div>
    </div>
-   </div>
+  </div>
 
-    <footer class="light-blue darken-1">
+  <footer class="light-blue darken-1">
           <div class="footer-copyright" >
             <div class="container">
 
@@ -102,7 +130,7 @@
 
               <div class="col s4">
 
-                <a class="right"><a href ="lessoncontent2.html" class="waves-effect waves-light btn">Next</a>
+                <a class="right"><a href ="revision.html" class="waves-effect waves-light btn">Next</a>
               </div>
             </div>
             
@@ -115,12 +143,23 @@
   <script type="text/javascript">
 
   var lesson_id = sessionStorage.lid;
+  var lang = sessionStorage.lang;
 
     function getContent(){
        getWeekDay();
        getObjectives();
        getLessonPrep();
-        vocab(); 
+ 
+       if (lang == "English"){
+          $('.twi_lcbd').hide();
+          $('.twi_sight_words').hide();
+          vocab(); 
+        }
+        else{
+          $('.eng_vocab').hide();
+          lcbd();
+          sight_words();
+        }
     }
 
     function getWeekDay(){
@@ -155,6 +194,22 @@
            complete:vocabComplete});
     }
 
+    function lcbd(){
+        var ajaxPageUrl="lessonajax.php?cmd=13&lid="+lesson_id+"";
+
+        $.ajax(ajaxPageUrl,
+          {async:true,
+           complete:lcbdComplete});
+    }
+
+    function sight_words(){
+        var ajaxPageUrl="lessonajax.php?cmd=14&lid="+lesson_id+"";
+
+        $.ajax(ajaxPageUrl,
+          {async:true,
+           complete:swComplete});
+    }
+
     function getWeekDayComplete(xhr,status){
       if(status!="success"){
 
@@ -176,8 +231,13 @@
 
           else{
               $('.wd').append
-              ("<span>Week "+obj.week+" Day "+obj.day+"</span>"
+              ("<h6>Week "+obj.week+" Day "+obj.day+"</h6>"
                 );
+
+              $('.lang').append
+              ("<h5> "+sessionStorage.lang+" Lesson</h5>"
+                );
+
             }
     }
 
@@ -196,17 +256,18 @@
 
           if(obj.result==0){
 
-          $('#divStatus').html("Error getting lesson");
+          $('#divStatus').html("Error getting objectives");
           return;
 
           }
 
           else{
+               var length=obj.length;
 
-              $('.objectives').append
-
-              
-              ("<p> "+obj[0].content+"</p>");
+                for(var i=0; i<length; i++){
+                  $('.objectives').append              
+                ("<p> "+obj[i].text+"</p>");
+              }
               
             }
     }
@@ -214,7 +275,7 @@
     function getLessonPrepComplete(xhr,status){
       if(status!="success"){
 
-            $('#divStatus').html("Error while getting lessons");
+            $('#divStatus').html("Error while getting lessons prep");
 
          return;    
          }
@@ -226,17 +287,19 @@
 
           if(obj.result==0){
 
-          $('#divStatus').html("Error getting lesson");
+          $('#divStatus').html("Error getting lessons prep 2");
           return;
 
           }
 
           else{
 
-              $('.lesson_prep').append
+                var length=obj.length;
 
-              ("<p> "+obj[0].content+"</p>");
-
+                for(var i=0; i<length; i++){
+                  $('.lesson_prep').append             
+                ("<p> "+obj[i].text+"</p>");
+              }
             }
     }
 
@@ -265,14 +328,70 @@
 
               for(var i=0; i<length; i++){
                
+               
 
                 $('.vocab').append
-                ("<input onclick='responsiveVoice.speak(&apos;"+obj[i].word+"&apos;);' type='button' value='🔊 "+obj[i].word+"' /> <br></br>"
+                ("<input onclick='responsiveVoice.speak(&apos;"+obj[i].text+"&apos;);' type='button' value='🔊 "+obj[i].text+"' /> <br></br>"
                   )
             }
           }
   }
-    </script>
+
+  function lcbdComplete(xhr,status){
+      if(status!="success"){
+
+            $('#divStatus').html("Error while getting lesson");
+
+         return;    
+         }
+
+          var obj=$.parseJSON(xhr.responseText);
+
+          console.log(obj);
+
+
+          if(obj.result==0){
+
+          $('#divStatus').html("Error getting lesson");
+          return;
+
+          }
+
+          else{
+
+              $('.lcbd').append
+              ("<p style='white-space: pre-line; text-align: justify;'> "+obj[0].text+"</p>");
+            }
+      }     
+
+      function swComplete(xhr,status){
+      if(status!="success"){
+
+            $('#divStatus').html("Error while getting lesson");
+
+         return;    
+         }
+
+          var obj=$.parseJSON(xhr.responseText);
+
+          console.log(obj);
+
+
+          if(obj.result==0){
+
+          $('#divStatus').html("Error getting lesson");
+          return;
+
+          }
+
+          else{
+
+              $('.sight_words').append
+              ("<p style='white-space: pre-line; text-align: justify;'> "+obj[0].text+"</p>");
+            }
+      } 
+   </script>
+
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="js/materialize.js"></script>
   <script src="js/init.js"></script>

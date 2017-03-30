@@ -3,7 +3,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-  <title> PrepApp-Lesson||Revision</title>
+  <title> MTLP || Looking Ahead</title>
 
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -53,22 +53,36 @@
       <center><div id="divStatus" class="status"></div></center>
 
       <div class="row">
-        <div class="col s12 m6">
+        <div class="col s12 m12">
           <div class="card  darken-1">
             <div class="card-content black-text">
-              <span class="card-title">Revision</span>
-             <div class = "revision"></div>
-             <div class="card-action">
-              <a href="#">Start Timer <i class="material-icons">av_timer</i></a>
-              
-            </div>
+              <span class="card-title">Looking Ahead</span>
+             <div class = "content"></div>
             </div>
           </div>
         </div>
        </div>
-       <br></br>
-       <br></br>
-       <br></br><br></br>
+
+       <!-- <div class="row">
+        <div class="col s12 m12">
+          <div class="card  darken-1">
+            <div class="card-content black-text">
+             <div class = "part2"></div>
+            </div>
+          </div>
+        </div>
+       </div>
+
+       <div class="row">
+        <div class="col s12 m12">
+          <div class="card  darken-1">
+            <div class="card-content black-text">
+             <span class="card-title">Teacher's Notes</span>
+             <div class = "teachersnotes"></div>
+            </div>
+          </div> -->
+        <!-- </div> -->
+       <!-- </div> -->
    </div>
    </div>
 
@@ -83,8 +97,7 @@
 
     function getContent(){
        getWeekDay();
-       getRevision();
-       getLessonPrep();
+       getLA();
     }
 
     function getWeekDay(){
@@ -95,22 +108,14 @@
            complete:getWeekDayComplete});
     }
 
-    function getRevision(){
-        var ajaxPageUrl="lessonajax.php?cmd=7&lid="+lesson_id+"";
+    function getLA(){
+        var ajaxPageUrl="lessonajax.php?cmd=12&lid="+lesson_id+"";
 
         $.ajax(ajaxPageUrl,
           {async:true,
-           complete:getRevisionComplete});
+           complete:getLAComplete});
     }
 
-
-    function getLessonPrep(){
-        var ajaxPageUrl="lessonajax.php?cmd=6&lid="+lesson_id+"";
-
-        $.ajax(ajaxPageUrl,
-          {async:true,
-           complete:getLessonPrepComplete});
-    }
 
     function getWeekDayComplete(xhr,status){
       if(status!="success"){
@@ -138,10 +143,10 @@
             }
     }
 
-    function getRevisionComplete(xhr,status){
+    function getLAComplete(xhr,status){
       if(status!="success"){
 
-            $('#divStatus').html("Error while getting lessons");
+            $('#divStatus').html("Error while getting Phonemic");
 
          return;    
          }
@@ -153,67 +158,39 @@
 
           if(obj.result==0){
 
-          $('#divStatus').html("Error getting lesson");
+          $('#divStatus').html("Error getting phonemic");
           return;
 
           }
 
           else{
 
-              $('.revision').append
-
-              
-              ("<p> "+obj[0].content+"</p>");
-              
-            }
-    }
-
-    function getLessonPrepComplete(xhr,status){
-      if(status!="success"){
-
-            $('#divStatus').html("Error while getting lessons");
-
-         return;    
-         }
-
-          var obj=$.parseJSON(xhr.responseText);
-
-          console.log(obj);
+               $('.content').append
+               ("<p style='white-space: pre-line; text-align: justify;'> "+obj[0].text+"</p>");
 
 
-          if(obj.result==0){
-
-          $('#divStatus').html("Error getting lesson");
-          return;
-
-          }
-
-          else{
-
-              $('.lesson_prep').append
-
-              ("<p> "+obj[0].content+"</p>");
-
+               // $('.teachersnotes').append
+               // ("<p style='white-space: pre-line; text-align: justify;'> "+obj[0].teachers_notes+"</p>");
+           
             }
     }
     </script>
   </body>
 
-   <footer class="light-blue darken-1">
+  <footer class="light-blue darken-1">
           <div class="footer-copyright" >
             <div class="container">
 
             <div class="row"> 
               <div class="col s8">
-              <a href ="openlesson.html" class="waves-effect waves-light btn">Back</a>
+                <a href ="phonemic.html" class="waves-effect waves-light btn">Back</a>
               </div>
 
               <div class="col s4">
-
-                <a class="right"><a href ="lessoncontent3.html" class="waves-effect waves-light btn">Next</a>
+                <a href ="openlesson.html" class="waves-effect waves-light btn">Next Lesson</a>
               </div>
             </div>
             
           </div>
-  </footer>
+        </footer>
 </html>
