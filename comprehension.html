@@ -163,6 +163,46 @@
            
             }
     }
+
+     function getTime(){
+        var ajaxPageUrl="timerajax.php?cmd=1&lid="+lesson_id+"";
+
+        $.ajax(ajaxPageUrl,
+          {async:true,
+           complete:getTimeComplete});
+    }
+
+     function getTimeComplete(xhr,status){
+       if(status!="success"){
+
+            $('#divStatus').html("Error while getting time");
+
+         return;    
+         }
+
+          var obj=$.parseJSON(xhr.responseText);
+          console.log(obj);
+
+          //alert(obj);
+
+          if(obj.result==0){
+
+          $('#divStatus').html("Error getting time");
+          return;
+
+          }
+
+          else{
+
+            sessionStorage.mintime = obj[0].comp_min;
+            sessionStorage.maxtime = obj[0].comp_max;
+
+            // alert( sessionStorage.mintime);
+            // alert( sessionStorage.maxtime);
+
+          }
+    }
+
     </script>
   </body>
 

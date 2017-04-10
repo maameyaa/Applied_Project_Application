@@ -139,3 +139,39 @@ function searchQuestions(){
 	  		echo json_encode($array);
 	  		//print_r($array)
 	}
+
+	function addAnswers(){
+
+		include_once("assessment.php");
+		 $obj=new assessment();
+
+		 if(!isset($_REQUEST['assessment_id'])){
+
+		 	echo '{"result":0,"message":"Assessment id not provided"}';
+
+		 	return;
+		 }
+
+
+	  	$assessment_id=$_REQUEST["assessment_id"];
+	  
+
+	  	$row=$obj->addanswers($assessment_id, $question_id, $answer);
+
+	  	$results=$obj->fetch();
+
+	  	if(!$results){
+	  		echo '{"result":0,"message":"Invalid ID"}';
+	  		return;
+	  	}
+
+	  	else{
+	  		$new = new assessment();
+            $obj= $new->addanswers($assessment_id, $question_id, $answer);
+
+	  		while($one=$new->fetch()){
+	  			$array[] = $one;
+	  		}
+	  		echo json_encode($array);
+	  		//print_r($array)
+	}

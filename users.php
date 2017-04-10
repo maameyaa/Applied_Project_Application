@@ -51,13 +51,18 @@ class users extends adb{
 	}
 
 
+	function searchTeachers($text1, $text2){
+		
+		$strQuery="Select * from users where first_name = '$text1' and last_name = '$text2'";
 
-
+		return $this->query($strQuery);
+	}
 
 
 
 	function getUsers($filter=false){
-		$strQuery="SELECT * FROM sweb_user";
+
+		$strQuery="SELECT * FROM users";
 		
 		if($filter){
 			$strQuery=$strQuery . " where $filter";
@@ -77,6 +82,8 @@ class users extends adb{
 		if($text){
 			$filter = " username like '%$text%' or firstname like '%$text%' or lastname like '%$text%' ";
 		}
+
+		
 		
 		return $this->getUsers($filter);
 	}
@@ -87,7 +94,7 @@ class users extends adb{
 	*returns true if the user is deleted, else false
 	*/
 	function deleteUser($usercode){
-		$strQuery = "DELETE FROM sweb_user WHERE user_id = '$usercode' ";
+		$strQuery = "DELETE FROM users WHERE user_id = '$usercode' ";
 		
 		return $this->query($strQuery);
 	}
@@ -98,7 +105,7 @@ class users extends adb{
 	*returns true if the user is updated, else false
 	*/
 	function editUser($usercode,$username,$firstname,$lastname,$password,$usergroup,$permission,$status){
-		$strQuery = "UPDATE sweb_user SET
+		$strQuery = "UPDATE users SET
 						username = '$username',
 						password = '$password',
 						firstname = '$firstname',

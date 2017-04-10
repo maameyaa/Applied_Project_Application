@@ -269,7 +269,7 @@
 
 	  		while($one=$new->fetch()){
 	  			$array[] = $one;
-	  			echo $one['text'];
+	  			// echo $one['text'];
 	  		}
 	  		echo json_encode($array);
 	  		// print_r($array);

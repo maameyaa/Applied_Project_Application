@@ -9,6 +9,11 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+
+  <link href="css/thumbnail-gallery.css" rel="stylesheet">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+
 </head>
 <body>
   <nav class="light-blue lighten-1" role="navigation">
@@ -43,15 +48,38 @@
   <div class="container">
     <div class="section">
 
-      <!--   Icon Section   -->
-      
+       <ul id="tabs-swipe-demo" class="tabs">
+          <li class="tab col s3"><a href="#test-swipe-1">Assessments</a></li>
+          <li class="tab col s3"><a class="active" href="#test-swipe-2">Notes</a></li>
+          <li class="tab col s3"><a href="#test-swipe-3">Teaching and Learning Materials</a></li>
+      </ul>
+
+        <div id="test-swipe-1" class="col s12 ">Test 1 </div>
+
+
+        <div id="test-swipe-2" class="col s12 ">Test 2</div>
+
+
+        <div id="test-swipe-3" class="col s12 ">Test 3
+         <div class="row">
+
+            <div class="col-lg-12">
+                <h1 class="page-header">Thumbnail Gallery</h1>
+            </div>
+
+            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+                <a class="thumbnail" href="#">
+                    <img class="img-responsive" src="http://placehold.it/400x300" alt="">
+                </a>
+            </div>
+        </div>
+
+        </div>
+
+       
+
     </div>
 
-    <br><br>
-
-    <div class="section">
-
-    </div>
   </div>
   
   <!--  Scripts-->

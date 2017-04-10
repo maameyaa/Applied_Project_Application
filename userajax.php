@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 	if(!isset($_REQUEST['cmd'])){
 
 	  echo "Command not provided";
@@ -16,7 +18,11 @@
 		break;
 
 		case 2:
-		signup();
+		searchTeachers();
+		break;
+
+		case 3:
+		searchCoaches();
 		break;
 	}
 
@@ -48,6 +54,80 @@
 	  		echo '{"result":1,"message":"log in complete"}';
 	  }
 	}
+
+
+
+	function searchTeachers(){
+
+		 include_once("users.php");
+		 $obj=new users();
+
+		 if(!isset($_REQUEST['first_name'])||!isset($_REQUEST['last_name'])){
+
+		 	echo '{"result":0,"message":"Please provide first name and last name"}';
+
+		 	return;
+		 }
+
+
+	  	$first_name	=$_REQUEST["first_name"];
+	  	$last_name=$_REQUEST["last_name"];
+
+	  	$row=$obj->searchTeachers($first_name,$last_name);
+	  	$results=$obj->fetch();
+
+
+	  	if(!$results){
+	  		echo '{"result":0,"message":"Cannot find teacher"}';
+	  		return;
+	  	}
+
+	  else{
+	  		
+	  		$_SESSION["teacher_id"] = $results['user_id'];
+
+
+	  		echo '{"result":1,"message":"Teacher found"}';
+	  }
+	}
+
+
+	function searchCoaches(){
+
+		 include_once("users.php");
+		 $obj=new users();
+
+		 if(!isset($_REQUEST['first_name'])||!isset($_REQUEST['last_name'])){
+
+		 	echo '{"result":0,"message":"Please provide first name and last name"}';
+
+		 	return;
+		 }
+
+
+	  	$first_name	=$_REQUEST["first_name"];
+	  	$last_name=$_REQUEST["last_name"];
+
+	  	$row=$obj->searchTeachers($first_name,$last_name);
+	  	$results=$obj->fetch();
+
+
+	  	if(!$results){
+	  		echo '{"result":0,"message":"Cannot find coach"}';
+	  		return;
+	  	}
+
+	  else{
+	  		
+	  		$_SESSION["coach_id"] = $results['user_id'];
+
+
+	  		echo '{"result":1,"message":"Coach found"}';
+	  }
+	}
+
+
+
 
 	function signup(){
 

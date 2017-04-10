@@ -12,7 +12,7 @@
 </head>
 <body>
   <nav class="light-blue lighten-1" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Logo</a>
+    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">MTLP</a>
       <ul class="right hide-on-med-and-down">
         <li><a class='dropdown-button btn' href="#" data-activates='dropdown1' color='light-blue'>Menu</a></li>
 
@@ -30,7 +30,7 @@
 
       <!-- Side Navigation -->
       <ul id="nav-mobile" class="side-nav">
-          <li>
+          <!-- <li>
             <div class="userView">
                 <div class="background">
                   <img src="images/office.jpg">
@@ -39,7 +39,7 @@
                 <a href="#!name"><span class="white-text name">John Doe</span></a>
                 <a href="#!email"><span class="white-text email">jdandturk@gmail.com</span></a>
             </div>
-          </li>
+          </li> -->
           <li><a href="dashboard.html">Dashboard</a></li>
           <li><a href="profile.html">Profile</a></li>
           <li><a href="lessons.html">Lessons</a></li>
@@ -53,207 +53,59 @@
 
   <div class="container">
     <div class="section">
-      <div>
-          <div id=tabs-fixed-width class="col s12" >
-            <ul class="tabs">
-              <li class="tab col s3"><a class="active" href="#Twi">Akaupem Twi</a></li>
-              <li class="tab col s3"><a href="#English">English</a></li>
-            </ul>
-          </div>
+     
+     <!-- Assessment Form -->
 
-          <center><div id="divStatus" class="status"></div></center>
+  <div class="row">
+  <h4>Assessment Form </h4>
+    
+      <div class="row">
+        <div class="input-field col s6">
+          <input placeholder="Coach's First Name" id="coach_firstname" type="text" class="validate">
+          
+        </div>
 
-          <div id="Twi" class="twi-row" >
-            <form action="#">
-                <table>
-                  <tbody>
-                    <tr>
-                      <th>
-                        <p ><h5 class="light-blue lighten-1" style="color:white;">Before Teaching</h5></p>
-                      </th>
-                    </tr>
-                    <tr>
-                      <td>
-                          <h6>0.1. The teacher has the English lesson plan developed and ready to use in the classroom.</h6>
-                      </td>
-                      <td>
-                          <input class="with-gap" name="group1" type="radio" id="Q01Y" value="yes" />
-                          <label for="Q01Y">Yes</label>
-                          <input class="with-gap" name="group1" type="radio" id="Q01N" />
-                          <label for="Q01N">No</label>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <h6>0.2.  The classroom has English teaching aids: Big books, conventional posters, etc.</h6>
-                      </td>
-                      <td>
-                        <input class="with-gap" name="group2" type="radio" id="Q02Y" value="yes" />
-                        <label for="Q02Y">Yes</label>
-                        <input class="with-gap" name="group2" type="radio" id="Q02N" value="no" />
-                        <label for="Q02N">No</label>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <h6>0.3.  The classroom has pupil seating arrangements organized in rows and pairs</h6>
-                      </td>
-                      <td>
-                        <input class="with-gap" name="group3" type="radio" id="Q03Y" value="yes" />
-                        <label for="Q03Y">Yes</label>
-                        <input class="with-gap" name="group3" type="radio" id="Q03N" value="no" />
-                        <label for="Q03N">No</label>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <p ><h5 class="light-blue lighten-1" style="color:white;">1. During Teaching: Revision</h5></p>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <h6>1.1.  The teacher begins instruction with review that includes student interaction</h6>
-                      </td>
-                      <td>
-                        <input class="with-gap" name="group4" type="radio" id="Q11Y" value="yes" />
-                        <label for="Q11Y">Yes</label>
-                        <input class="with-gap" name="group4" type="radio" id="Q11N" value="no" />
-                        <label for="Q11N">No</label>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <h6>1.2.  The teacher introduces the lesson and tells the students what they learn</h6>
-                      </td>
-                      <td>
-                        <input class="with-gap" name="group5" type="radio" id="Q12Y" value="yes" />
-                        <label for="Q12Y">Yes</label>
-                        <input class="with-gap" name="group5" type="radio" id="Q12N" value="no" />
-                        <label for="Q12N">No</label>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <h6>1.3. Total time for revision:
-                        <input class="with-gap" name="group6" type="radio" id="Q13A"  />
-                        <label for="Q13A"> less than 5 min</label>
-                        <input class="with-gap" name="group6" type="radio" id="Q13B"  />
-                        <label for="Q13B">5-6 min</label>
-                        <input class="with-gap" name="group6" type="radio" id="Q13C"  />
-                        <label for="Q13C">Less than 6 min</label>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <p ><h5 class="light-blue lighten-1" style="color:white;">2. During Teaching: Phonemic Awareness (PA)</h5></p>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <h6>2.1.  The teacher provides examples in English language WITHOUT print letters or words. </h6>
-                      </td>
-                      <td>
-                        <input class="with-gap" name="group7" type="radio" id="Q21Y" value="yes" />
-                        <label for="Q21Y">Yes</label>
-                        <input class="with-gap" name="group7" type="radio" id="Q21N" value="no" />
-                        <label for="Q21N">No</label>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <h6>2.2.  The teacher uses rhymes, songs, or poetry to teach the sounds and patterns of word. </h6>
-                      </td>
-                      <td>
-                        <input class="with-gap" name="group8" type="radio" id="Q22Y" value="yes" />
-                        <label for="Q22Y">Yes</label>
-                        <input class="with-gap" name="group8" type="radio" id="Q22N" value="no" />
-                        <label for="Q22N">No</label>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <h6>2.3. Total time for PA:
-                        <input class="with-gap" name="group9" type="radio" id="Q23A"  />
-                        <label for="Q23A"> less than 5 min</label>
-                        <input class="with-gap" name="group9" type="radio" id="Q23B"  />
-                        <label for="Q23B">5-6 min</label>
-                        <input class="with-gap" name="group9" type="radio" id="Q23C"  />
-                        <label for="Q23C">Less than 6 min</label>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <p ><h5 class="light-blue lighten-1" style="color:white;">3. During Teaching: Vocabulary</h5></p>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <h6>3.1.  The teacher provides examples in English language WITHOUT print letters or words. </h6>
-                      </td>
-                      <td>
-                        <input class="with-gap" name="group10" type="radio" id="Q31Y" value="yes" />
-                        <label for="Q31Y">Yes</label>
-                        <input class="with-gap" name="group10" type="radio" id="Q31N" value="no" />
-                        <label for="Q31N">No</label>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <h6>3.2. The teacher used conventional posters to practice new vocabulary words </h6>
-                      </td>
-                      <td>
-                        <input class="with-gap" name="group11" type="radio" id="Q32Y" value="yes" />
-                        <label for="Q32Y">Yes</label>
-                        <input class="with-gap" name="group11" type="radio" id="Q32N" value="no" />
-                        <label for="Q32N">No</label>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <h6>2.3. Total time for Vocabulary:
-                        <input class="with-gap" name="group12" type="radio" id="Q23A"  />
-                        <label for="Q23A"> less than 5 min</label>
-                        <input class="with-gap" name="group12" type="radio" id="Q23B"  />
-                        <label for="Q23B">5-6 min</label>
-                        <input class="with-gap" name="group12" type="radio" id="Q23C"  />
-                        <label for="Q23C">Less than 6 min</label>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <p ><h5 class="light-blue lighten-1" style="color:white;">4. During Teaching: Comprehension and Communication</h5></p>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <h6>4.1.  The teacher reads a story to pupils and asks questions. </h6>
-                      </td>
-                      <td>
-                        <input class="with-gap" name="group13" type="radio" id="Q41Y" value="yes" />
-                        <label for="Q4 41Y">Yes</label>
-                        <input class="with-gap" name="group13" type="radio" id="Q41N" value="no" />
-                        <label for="Q41N">No</label>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <p ><h5 class="light-blue lighten-1" style="color:white;">5. During Teaching: Generl Observations</h5></p>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <p ><h5 class="light-blue lighten-1" style="color:white;">6. After Teaching: Reflection Notes</h5></p>
-                      </td>
-                    </tr>
+        <div class="input-field col s6">
+          <input id="coach_lastname" placeholder="Coach's Last Name" type="text" class="validate">
+         
+        </div>
+      </div>
 
+       <br></br>
+      <div class="row">
+        <div class="input-field col s6">
+          <input placeholder="Teacher's First Name" id="first_name" type="text" class="validate">
+          
+        </div>
+        <div class="input-field col s6">
+          <input id="last_name" placeholder="Teacher's Last Name" type="text" class="validate">
+         
+        </div>
+      </div>
 
-                  </tbody>
-                </table>
-            </form>
-          </div>
+      <br></br>
 
-          <div id="English" class="eng-row"> 
-          </div> 
+      <div class="row">
+        <div class = "col s3"></div>
+        <div class="input-field col s3">
+          <input type="number" name="quantity" min="1" max="20">
+          <label for="disabled"> Lesson Week</label>
+        </div>
+        <div class="input-field col s3">
+          <input type="number" name="quantity" min="1" max="5">
+          <label for="disabled">Lesson Day</label>
+        </div>
+
+         <br></br>
+         <br></br>
+         <!-- <br></br> -->
+
+        <div class= "col s3"></div><div class= "col s3" ></div><div class= "col s3"></div>
+        <div class= "col s3">
+           <a onclick= "getCoach()" class="right waves-effect waves-light btn">Next</a></div>
+      </div>
+ 
+      </div>
     </div>
   </div>
 
@@ -262,6 +114,96 @@
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="js/materialize.js"></script>
   <script src="js/init.js"></script>
+
+  <script type="text/javascript">
+
+  function getTeacher(){
+        var first_name = $('#first_name').val(); 
+        var last_name = $('#last_name').val(); 
+
+        var ajaxPageUrl="userajax.php?cmd=2&first_name="+first_name+"&last_name="+last_name+"";
+
+        alert("Here1");
+
+        $.ajax(ajaxPageUrl,
+          {async:true,
+           complete:getTeacherComplete});
+    }
+
+    function getCoach(){
+        var first_name = $('#coach_firstname').val(); 
+        var last_name = $('#coach_lastname').val(); 
+
+        var ajaxPageUrl="userajax.php?cmd=3&first_name="+first_name+"&last_name="+last_name+"";
+
+        alert(ajaxPageUrl);
+
+        $.ajax(ajaxPageUrl,
+          {async:true,
+           complete:getCoachComplete});
+    }
+
+    function getCoachComplete(xhr,status){
+      if(status!="success"){
+
+            $('#divStatus').html("Error while getting Teacher");
+
+         return;    
+         }
+          var obj=$.parseJSON(xhr.responseText);
+          console.log(obj);
+
+
+          if(obj.result==0){
+
+          $('#divStatus').html("Error getting Teacher");
+          return;
+
+          }
+
+          else{
+              alert("here");
+              getTeacher();
+            }
+    }
+
+    function getTeacherComplete(xhr,status){
+      if(status!="success"){
+
+            $('#divStatus').html("Error while getting Teacher");
+
+         return;    
+         }
+          var obj=$.parseJSON(xhr.responseText);
+          console.log(obj);
+
+
+          if(obj.result==0){
+
+          $('#divStatus').html("Error getting Teacher");
+          return;
+
+          }
+
+          else{
+              createassessment();
+            }
+    }
+
+    function createassessment(){
+      var week = $('#week').val(); 
+      var day = $('#day').val(); 
+
+      sessionStorage.week=week;
+      sessionStorage.day=day;
+
+       window.location.href ="assessmentsubmit.html";
+
+      
+    }
+
+
+  </script>
 
   </body>
 </html>

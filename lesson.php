@@ -138,6 +138,11 @@ class lessons extends adb{
 		return $this->query($strQuery);
 	}
 
+	function getTime($id){
+		$strQuery="SELECT * from timer where timer.lesson_id ='$id'";
+		return $this->query($strQuery);
+	}
+
 
 
 

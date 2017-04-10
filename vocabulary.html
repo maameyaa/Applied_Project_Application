@@ -46,9 +46,21 @@
   <div class="container">
     <div class="section">
 
-    <h5>Lesson</h5>
+    <div class=lang></div>
 
-    <div class='wd'> </div>
+    <div class="row">
+
+          <div class= "col s6">
+              <div class='wd'> </div> 
+          </div>
+   </div>
+   <div class="row">
+              <div class= "col s12">
+                    <a href ="phonemic.html" class=" col s6">Back</a>
+                   <a onclick="nextpage()"  class=" right">Next</a>
+              </div>
+    </div>
+
 
       <center><div id="divStatus" class="status"></div></center>
 
@@ -100,6 +112,7 @@
     function getContent(){
        getWeekDay();
        getVocabulary();
+       getTime();
     }
 
     function nextpage(){
@@ -155,6 +168,10 @@
               $('.wd').append
               ("<span>Week "+obj.week+" Day "+obj.day+"</span>"
                 );
+
+               $('.lang').append
+              ("<h5> "+sessionStorage.lang+" Lesson</h5>"
+                );
             }
     }
 
@@ -189,6 +206,47 @@
            
             }
     }
+
+
+    function getTime(){
+        var ajaxPageUrl="timerajax.php?cmd=1&lid="+lesson_id+"";
+
+        $.ajax(ajaxPageUrl,
+          {async:true,
+           complete:getTimeComplete});
+    }
+
+     function getTimeComplete(xhr,status){
+       if(status!="success"){
+
+            $('#divStatus').html("Error while getting time");
+
+         return;    
+         }
+
+          var obj=$.parseJSON(xhr.responseText);
+          console.log(obj);
+
+          //alert(obj);
+
+          if(obj.result==0){
+
+          $('#divStatus').html("Error getting time");
+          return;
+
+          }
+
+          else{
+
+            sessionStorage.mintime = obj[0].vocab_min;
+            sessionStorage.maxtime = obj[0].vocab_max;
+
+            // alert( sessionStorage.mintime);
+            // alert( sessionStorage.maxtime);
+
+          }
+    }
+
     </script>
   </body>
 

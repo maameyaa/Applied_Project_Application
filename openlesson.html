@@ -50,7 +50,18 @@
 
     <div class=lang></div>
 
-      <div class='wd'> </div>
+     <div class="row">
+
+          <div class= "col s6">
+              <div class='wd'> </div> 
+          </div>
+      </div>
+      <div class="row">
+              <div class= "col s12">
+                    <a href ="lessons.html" class=" col s6">Back</a>
+                   <a href ="revision.html"  class=" right">Next</a>
+              </div>
+       </div>
 
       <div id="divStatus" class="status"></div>
 
@@ -119,7 +130,7 @@
    </div>
   </div>
 
-  <footer class="light-blue darken-1">
+ <!--  <footer class="light-blue darken-1">
           <div class="footer-copyright" >
             <div class="container">
 
@@ -135,7 +146,7 @@
             </div>
             
           </div>
-  </footer>
+  </footer> -->
   
 
   <!--  Scripts-->
@@ -386,8 +397,19 @@
 
           else{
 
+              var length=obj.length;
+
+              for(var i=0; i<length; i++){
+
               $('.sight_words').append
-              ("<p style='white-space: pre-line; text-align: justify;'> "+obj[0].text+"</p>");
+              ("<p style='white-space: pre-line; text-align: justify;'> "+obj[i].text+"</p>");
+
+// alert("&apos;"+obj[1].audio+"&apos;");
+                $('.sight_words').append
+                ("<audio controls><source src='"+obj[i].audio+"'; type='audio/mpeg'></audio>");
+
+            }
+
             }
       } 
    </script>

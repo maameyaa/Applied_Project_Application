@@ -1,46 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
+
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-  <title> PrepApp- Timer</title>
+  <title>  MTLP - Timer</title>
 
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-
-
-  <!-- Style for the timer -->
-  <style>
-    .pie { width:200px; height:200px; background-color:blue; border-radius:100px; position:absolute; }
-
-    .pie1 { clip:rect(0px,200px,200px,100px); -o-transform:rotate(0deg); -moz-transform:rotate(0deg); -webkit-transform:rotate(0deg); background:-moz-radial-gradient(20% 50% 0deg, #333, #0000ff); background:-webkit-gradient(radial, 100 100, 0, 100 100, 110, from(#000), to(#0000ff)); }
-
-    .pie2 { clip:rect(0px,100px,200px,0px); -o-transform:rotate(0deg); -moz-transform:rotate(0deg); -webkit-transform:rotate(0deg); background:-moz-radial-gradient(80% 50% 0deg, #333, #0000ff); background:-webkit-gradient(radial, 100 100, 0, 100 100, 110, from(#000), to(#0000ff)); }
-
-    .hold { width:200px; height:200px; position:absolute; z-index:1; }
-
-    .hold1 { clip:rect(0px,200px,200px,100px); }
-
-    .hold2 { clip:rect(0px,100px,200px,0px); }
-
-    .bg { width:200px; height:200px; background-color:red; border-radius:100px; position:absolute; box-shadow:0px 0px 8px #333; background:-moz-radial-gradient(0% 50% 0deg, #900, #ff0000); background:-webkit-gradient(radial, 100 100, 0, 100 100, 110, from(#900), to(#ff0000)); }
-
-    .time { width:160px; height:160px; margin:20px 0 0 20px; background-color:#fff; border-radius:100px; position:absolute; z-index:1; box-shadow:0px 0px 8px #333 inset; text-align:center; line-height:160px; font-family:"Book Antiqua", Palatino, serif; font-size:35px; font-weight:bold; text-shadow: 1px 1px 3px #333; }
-
-    .time em { background:#fff; position:absolute; top:62px; left:12px; height:18px; width:140px; opacity:0.4; }
-    </style>
-
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 
-
-<body>
+<body onload='getAllLessons()' >
   <nav class="light-blue lighten-1" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Logo</a>
+    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo"><i class="large material-icons right">cloud</i></a>
       <ul class="right hide-on-med-and-down">
-        <li><a class='dropdown-button btn' href="#" data-activates='dropdown1' color='light-blue'>Menu</a></li>
+        <li><a class='dropdown-button btn' href="#" data-activates='dropdown1' >Menu</a></li>
 
         <!-- Drop down menu -->
         <ul id='dropdown1' class='dropdown-content'>
@@ -68,96 +47,147 @@
 
   <div class="container">
     <div class="section">
-      <center>
-        <div class="hold hold1">
-          <div class="pie pie1"></div>
+     
+      <!--   Search Section   -->
+      <div class="row"> 
+        <div class="col s12">
+        <h4>Timer</h4>
+        <h5>Select a lesson to start the timer</h5>
         </div>
+      </div>
+   
+      <div>
+          <div id=tabs-fixed-width class="col s12" >
+            <ul class="tabs">
+              <li class="tab col s3"><a class="active" href="#Twi">Akaupem Twi</a></li>
+              <li class="tab col s3"><a href="#English">English</a></li>
+            </ul>
+          </div>
 
-        <div class="hold hold2">
-          <div class="pie pie2"></div>
-        </div>
+          <center><div id="divStatus" class="status"></div></center>
 
-        <div class="bg"> </div>
+          <div id="Twi" class="twi-row" ></div>
 
-        <div class="time"><span></span><em></em></div>
-      </center>
+          <div id="English" class="eng-row"></div>
 
+
+
+
+      </div>
     </div>
-
-    <div class="section"></div>
-
   </div>
+
   
   <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="js/materialize.js"></script>
   <script src="js/init.js"></script>
-  <script>
-      i = 0;
-      j = 0;
-      count = 0;
-      MM = 10;
-      SS = 00;
-      MS = 00;
-      totle = (MM+1)*600;
-      d = 180*(MM+1);
-      //MM = "0" + MM;
-      
-      function showTime(){
-        totle = totle - 1;
-        if(totle==0){
-          clearInterval(s);
-          clearInterval(t1);
-          clearInterval(t2);
-          $(".pie2").css("-o-transform","rotate(" + d + "deg)");
-          $(".pie2").css("-moz-transform","rotate(" + d + "deg)");
-          $(".pie2").css("-webkit-transform","rotate(" + d + "deg)");
-        }else{
-          if(totle>0 && MS>0){
-            MS = MS - 1;
-            if(MS < 10){MS = "0" + MS};
-          };
-          if(MS==0 && SS>0){
-            MS = 10;
-            SS = SS - 1;
-            if(SS < 10){SS = "0" + SS};
-          };
-          if(SS==0 && MM>0){
-            SS = 60;
-            MM = MM - 1;
-            if(MM < 10){MM = "0" + MM};
-          };
-        };
-        $(".time span").html(MM + ":" + SS + ":" + MS);
-      };
-      s = setInterval("showTime()",100);
+  <script type="text/javascript">
 
-      function start1(){
-        i = i + 0.6;
-        count = count + 1;
-        if(count==300){
-          count = 0;
-          clearInterval(t1);
-          t2 = setInterval("start2()",100);
-        };
-        $(".pie1").css("-o-transform","rotate(" + i + "deg)");
-        $(".pie1").css("-moz-transform","rotate(" + i + "deg)");
-        $(".pie1").css("-webkit-transform","rotate(" + i + "deg)");
-      };
-      function start2(){
-        j = j + 0.6;
-        count = count + 1;
-        if(count==300){
-          count = 0;
-          clearInterval(t2);
-          t1 = setInterval("start1()",100);
-        };
-        $(".pie2").css("-o-transform","rotate(" + j + "deg)");
-        $(".pie2").css("-moz-transform","rotate(" + j + "deg)");
-        $(".pie2").css("-webkit-transform","rotate(" + j + "deg)");
-      };
 
-      t1 = setInterval("start1()",100);
-  </script> 
+$(function() {  
+
+  getTwilessons();
+  getEnglessons();
+
+  });
+    function getAllLessons(){
+       
+    }
+
+    function getTwilessons(){
+        var ajaxPageUrl="lessonajax.php?cmd=2&lang=Twi";
+
+        $.ajax(ajaxPageUrl,
+          {async:true,
+           complete:getTwilessonscomplete});
+    }
+
+    function getEnglessons(){
+        var ajaxPageUrl="lessonajax.php?cmd=2&lang=English";
+
+        $.ajax(ajaxPageUrl,
+          {async:true,
+           complete:getEnglessonscomplete});
+    }
+
+    function getTwilessonscomplete(xhr,status){
+        if(status!="success"){
+
+            $('#divStatus').html("Error while getting lessons");
+
+         return;    
+         }
+
+          var obj=$.parseJSON(xhr.responseText);
+          console.log(obj.result);
+
+
+          if(obj.result==0){
+
+          $('#divStatus').html("No Lessons");
+          return;
+
+          }
+
+          else{
+            var length=obj.length;
+            var count=1;
+
+            for(var i=0; i<length; i++){
+              $('.twi-row').append
+              ("<a id='"+i+"'>"+ "<div class='card' onclick='clicked("+obj[i].lesson_id+",&apos;"+obj[i].language+"&apos;)' class='rowgrid'"+"<h3 class=''>Lesson "+count+":  Week "+obj[i].week+" Day "+obj[i].day+ "</h5><br></br>"
+                )
+              count ++;
+            }
+          }
+    }
+
+    function getEnglessonscomplete(xhr,status){
+        if(status!="success"){
+
+            $('#divStatus').html("Error while getting lessons");
+
+         return;    
+         }
+
+          var obj=$.parseJSON(xhr.responseText);
+          console.log(obj.result);
+
+
+          if(obj.result==0){
+
+          $('#divStatus').html("No Lessons");
+          return;
+
+          }
+
+          else{
+            var length=obj.length;
+            var count=1;
+
+            for(var i=0; i<length; i++){
+              // alert(obj[i].language);
+              $('.eng-row').append
+              ("<a id='"+i+"'>"+ "<div class = 'card' onclick='clicked("+obj[i].lesson_id+",&apos;"+obj[i].language+"&apos;)' class='rowgrid'"+"<h3 class=''>Lesson "+count+":  Week "+obj[i].week+" Day "+obj[i].day+"</h5><br></br>"
+                )
+              count ++;
+            }
+          }
+
+    }
+
+    function clicked(lid, lang){
+      var lesson_id = lid;
+      var lang = lang;
+
+      sessionStorage.lid=lesson_id;
+      sessionStorage.lang=lang;
+
+      // alert(sessionStorage.lang);
+
+      window.location.href ="timerstart.html";
+    }
+   </script>
   </body>
 </html>

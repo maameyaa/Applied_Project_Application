@@ -86,9 +86,15 @@
   <script src="js/init.js"></script>
   <script type="text/javascript">
 
+
+$(function() {  
+
+  getTwilessons();
+  getEnglessons();
+
+  });
     function getAllLessons(){
-       getTwilessons();
-       getEnglessons();
+       
     }
 
     function getTwilessons(){
@@ -132,7 +138,7 @@
 
             for(var i=0; i<length; i++){
               $('.twi-row').append
-              ("<a id='"+i+"'>"+ "<div onclick='clicked("+obj[i].lesson_id+",&apos;"+obj[i].language+"&apos;)' class='rowgrid'"+"<h3 class=''>Lesson "+count+":  Week "+obj[i].week+" Day "+obj[i].day+ "</h5>"
+              ("<a id='"+i+"'>"+ "<div class='card' onclick='clicked("+obj[i].lesson_id+",&apos;"+obj[i].language+"&apos;)' class='rowgrid'"+"<h3 class=''>Lesson "+count+":  Week "+obj[i].week+" Day "+obj[i].day+ "</h5><br></br>"
                 )
               count ++;
             }
@@ -165,7 +171,7 @@
             for(var i=0; i<length; i++){
               // alert(obj[i].language);
               $('.eng-row').append
-              ("<a id='"+i+"'>"+ "<div onclick='clicked("+obj[i].lesson_id+",&apos;"+obj[i].language+"&apos;)' class='rowgrid'"+"<h3 class=''>Lesson "+count+":  Week "+obj[i].week+" Day "+obj[i].day+"</h5>"
+              ("<a id='"+i+"'>"+ "<div class = 'card' onclick='clicked("+obj[i].lesson_id+",&apos;"+obj[i].language+"&apos;)' class='rowgrid'"+"<h3 class=''>Lesson "+count+":  Week "+obj[i].week+" Day "+obj[i].day+"</h5><br></br>"
                 )
               count ++;
             }
@@ -180,7 +186,7 @@
       sessionStorage.lid=lesson_id;
       sessionStorage.lang=lang;
 
-      alert(sessionStorage.lang);
+      // alert(sessionStorage.lang);
 
       window.location.href ="openlesson.html";
     }
