@@ -25,7 +25,7 @@
           <li><a href="profile.html">Profile</a></li>
           <li><a href="lessons.html">Lessons</a></li>
           <li><a href="timer.html">Teaching </a></li>
-          <li><a href="assesment.html">Coahing</a></li>
+          <li><a href="assesment.html">Coaching</a></li>
           <li class="divider"></li>
           <li><a href="logout.html">Logout</a></li>
         </ul>
@@ -122,6 +122,9 @@
             <div class="card-content black-text">
              <span class="card-title">Teacher's Notes</span>
              <div class = "teachersnotes"></div>
+              <div class="card-action ">
+              <a href="timerstart.html">Start Timer <i class="material-icons ">av_timer</i></a>
+            </div>
             </div>
           </div>
         </div>
@@ -143,6 +146,7 @@
     function getContent(){
        getWeekDay();
        getFluency();
+       getTime();
     }
 
     function getWeekDay(){
@@ -221,6 +225,46 @@
            
             }
         }
+
+        function getTime(){
+        var ajaxPageUrl="timerajax.php?cmd=1&lid="+lesson_id+"";
+
+        $.ajax(ajaxPageUrl,
+          {async:true,
+           complete:getTimeComplete});
+    }
+
+     function getTimeComplete(xhr,status){
+       if(status!="success"){
+
+            $('#divStatus').html("Error while getting time");
+
+         return;    
+         }
+
+          var obj=$.parseJSON(xhr.responseText);
+          console.log(obj);
+
+          //alert(obj);
+
+          if(obj.result==0){
+
+          $('#divStatus').html("Error getting time");
+          return;
+
+          }
+
+          else{
+
+            sessionStorage.mintime = obj[0].fluency_min;
+            sessionStorage.maxtime = obj[0].fluency_max;
+
+            //alert( sessionStorage.mintime);
+            // alert( sessionStorage.maxtime);
+
+          }
+        }
+
     </script>
   </body>
 

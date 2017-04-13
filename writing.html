@@ -143,6 +143,7 @@
     function getContent(){
        getWeekDay();
        getWriting();
+       getTime();
     }
 
     function getWeekDay(){
@@ -220,6 +221,45 @@
                ("<p style='white-space: pre-line; text-align: justify;'> "+obj[0].teachers_notes+"</p>");
            
             }
+        }
+
+      function getTime(){
+        var ajaxPageUrl="timerajax.php?cmd=1&lid="+lesson_id+"";
+
+        $.ajax(ajaxPageUrl,
+          {async:true,
+           complete:getTimeComplete});
+    }
+
+     function getTimeComplete(xhr,status){
+       if(status!="success"){
+
+            $('#divStatus').html("Error while getting time");
+
+         return;    
+         }
+
+          var obj=$.parseJSON(xhr.responseText);
+          console.log(obj);
+
+          //alert(obj);
+
+          if(obj.result==0){
+
+          $('#divStatus').html("Error getting time");
+          return;
+
+          }
+
+          else{
+
+            sessionStorage.mintime = obj[0].phonics_min;
+            sessionStorage.maxtime = obj[0].phonics_max;
+
+            //alert( sessionStorage.mintime);
+            // alert( sessionStorage.maxtime);
+
+          }
         }
     </script>
   </body>

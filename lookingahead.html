@@ -46,9 +46,14 @@
   <div class="container">
     <div class="section">
 
-    <h5>Lesson</h5>
+    <div class=lang></div>
 
-    <div class='wd'> </div>
+    <div class="row">
+
+          <div class= "col s6">
+              <div class='wd'> </div> 
+          </div>
+   </div>
 
       <center><div id="divStatus" class="status"></div></center>
 
@@ -58,6 +63,10 @@
             <div class="card-content black-text">
               <span class="card-title">Looking Ahead</span>
              <div class = "content"></div>
+
+             <div class="card-action ">
+              <a href="timerstart.html">Start Timer <i class="material-icons ">av_timer</i></a>
+            </div>
             </div>
           </div>
         </div>
@@ -98,6 +107,7 @@
     function getContent(){
        getWeekDay();
        getLA();
+       getTime();
     }
 
     function getWeekDay(){
@@ -174,6 +184,45 @@
            
             }
     }
+
+      function getTime(){
+        var ajaxPageUrl="timerajax.php?cmd=1&lid="+lesson_id+"";
+
+        $.ajax(ajaxPageUrl,
+          {async:true,
+           complete:getTimeComplete});
+    }
+
+     function getTimeComplete(xhr,status){
+       if(status!="success"){
+
+            $('#divStatus').html("Error while getting time");
+
+         return;    
+         }
+
+          var obj=$.parseJSON(xhr.responseText);
+          console.log(obj);
+
+          //alert(obj);
+
+          if(obj.result==0){
+
+          $('#divStatus').html("Error getting time");
+          return;
+
+          }
+
+          else{
+
+            sessionStorage.mintime = obj[0].lookingAhead_min;
+            sessionStorage.maxtime = obj[0].lookingAhead_max;
+
+            //alert( sessionStorage.mintime);
+            // alert( sessionStorage.maxtime);
+
+          }
+        }
     </script>
   </body>
 

@@ -12,3 +12,12 @@
 .icon-block .material-icons {
 	font-size: inherit;
 }
+
+.timerhead{
+	text-align: center !important;
+}
+.timerpos{
+	position: absolute;
+text-align: center !important;
+margin:0  auto !important ;
+}

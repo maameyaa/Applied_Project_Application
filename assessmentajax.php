@@ -34,6 +34,7 @@
 		case 4: 
 		addAnswers();
 		break;
+
 	}
 
 function createAssessment(){
@@ -175,3 +176,5 @@ function searchQuestions(){
 	  		echo json_encode($array);
 	  		//print_r($array)
 	}
+
+?>

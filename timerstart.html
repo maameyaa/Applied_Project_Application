@@ -1,17 +1,17 @@
 <!DOCTYPE HTML>
 <html>
-	<head>
-	  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-	  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-	  <title>  MTLP - Timer</title>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+	<title>  MTLP - Timer</title>
 
-	  <!-- CSS  -->
-	  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-	  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-	  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<!-- CSS  -->
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+	<link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+	<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-		<style>
+	<style>
 		.pie { width:200px; height:200px; background-color:blue; border-radius:100px; position:absolute; }
 
 		.pie1 { clip:rect(0px,200px,200px,100px); -o-transform:rotate(0deg); -moz-transform:rotate(0deg); -webkit-transform:rotate(0deg); background:-moz-radial-gradient(20% 50% 0deg, #333, #0000ff); background:-webkit-gradient(radial, 100 100, 0, 100 100, 110, from(#000), to(#0000ff)); }
@@ -26,60 +26,61 @@
 
 		.bg { width:200px; height:200px; background-color:red; border-radius:100px; position:absolute; box-shadow:0px 0px 8px #333; background:-moz-radial-gradient(0% 50% 0deg, #900, #ff0000); background:-webkit-gradient(radial, 100 100, 0, 100 100, 110, from(#900), to(#ff0000)); }
 
-		.time { width:160px; height:160px; margin:20px 0 0 20px; background-color:#fff; border-radius:100px; position:absolute; z-index:1; box-shadow:0px 0px 8px #333 inset; text-align:center; line-height:160px; font-family:"Book Antiqua", Palatino, serif; font-size:35px; font-weight:bold; text-shadow: 1px 1px 3px #333; }
+		.time { width:160px; height:160px; margin:20px 0 0 20px; background-color:#fff; border-radius:100px; position:absolute; z-index:1; box-shadow:0px 0px 8px #333 inset; text-align:center; line-height:160px; font-family:"Book Antiqua", Palatino, serif; font-size:35px; font-weight:bold; text-shadow: 1px 1px 3px #333;  }
 
-		.time em { background:#fff; position:absolute; top:62px; left:12px; height:18px; width:140px; opacity:0.4; }
-		</style>
-	</head>
+		.time em { background:#fff; position:absolute; top:60px; left:12px; height:18px; width:140px; opacity:0.4; }
+	</style>
+</head>
 
-	<body>
+<body>
 
-			<nav class="light-blue lighten-1" role="navigation">
-		    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo"><i class="large material-icons right">cloud</i></a>
-		      <ul class="right hide-on-med-and-down">
-		        <li><a class='dropdown-button btn' href="#" data-activates='dropdown1' >Menu</a></li>
+	<nav class="light-blue lighten-1" role="navigation">
+		<div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo"><i class="large material-icons right">cloud</i></a>
+			<ul class="right hide-on-med-and-down">
+				<li><a class='dropdown-button btn' href="#" data-activates='dropdown1' >Menu</a></li>
 
-		        <!-- Drop down menu -->
-		        <ul id='dropdown1' class='dropdown-content'>
-		          <li><a href="dashboard.html">Dashboard</a></li>
-		          <li><a href="profile.html">Profile</a></li>
-		          <li><a href="lessons.html">Lessons</a></li>
-		          <li><a href="timer.html">Teaching </a></li>
-		          <li><a href="assesment.html">Coahing</a></li>
-		          <li class="divider"></li>
-		          <li><a href="logout.html">Logout</a></li>
-		        </ul>
-		      </ul>
+				<!-- Drop down menu -->
+				<ul id='dropdown1' class='dropdown-content'>
+					<li><a href="dashboard.html">Dashboard</a></li>
+					<li><a href="profile.html">Profile</a></li>
+					<li><a href="lessons.html">Lessons</a></li>
+					<li><a href="timer.html">Teaching </a></li>
+					<li><a href="assesment.html">Coahing</a></li>
+					<li class="divider"></li>
+					<li><a href="logout.html">Logout</a></li>
+				</ul>
+			</ul>
 
-		      <ul id="nav-mobile" class="side-nav">
-		         <li><a href="dashboard.html">Dashboard</a></li>
-		          <li><a href="profile.html">Profile</a></li>
-		          <li><a href="lessons.html">Lessons</a></li>
-		          <li><a href="timer.html">Teaching </a></li>
-		          <li><a href="assesment.html">Coahing</a></li>
-		          <li><a href="logout.html">Logout</a></li>
-		      </ul>
-		      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
-		    </div>
-		  </nav>
+			<ul id="nav-mobile" class="side-nav">
+				<li><a href="dashboard.html">Dashboard</a></li>
+				<li><a href="profile.html">Profile</a></li>
+				<li><a href="lessons.html">Lessons</a></li>
+				<li><a href="timer.html">Teaching </a></li>
+				<li><a href="assesment.html">Coahing</a></li>
+				<li><a href="logout.html">Logout</a></li>
+			</ul>
+			<a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+		</div>
+	</nav>
 
 	<div class="container">
-
-   	  <h3>Timer</h3>
-
-		<div class="hold hold1">
-
-		  <div class="pie pie1"></div>
+<div syle="text-align:center">
+		<h3 class="timerhead">Timer</h3>
 		</div>
+		<div class="timerpos">
+			<div class="hold hold1">
 
-		<div class="hold hold2">
-		  <div class="pie pie2"></div>
+				<div class="pie pie1"></div>
+			</div>
+
+			<div class="hold hold2">
+				<div class="pie pie2"></div>
+			</div>
+
+			<div class="bg"> </div>
+
+			<div class="time"><span></span><em></em></div>
 		</div>
-
-		<div class="bg"> </div>
-
-		<div class="time"><span></span><em></em></div>
-
 		<br></br><br></br><br></br>
 		<br></br>
 		<br></br><br></br>
@@ -89,25 +90,27 @@
 			<div  class = "col s4"> <a onclick= "startTimer()" class="right waves-effect waves-light btn">Start</a></div>
 		</div>
 		
-   	</div>
+	</div>
 
-   	 
+
 
 
 
 	<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script> 
 
 	<script>
-	var time = sessionStorage.time;
+		var time = sessionStorage.mintime;
 
-		i = 0;
-		j = 0;
-		count = 0;
-		MM =  time;
-		SS = 00;
-		MS = 00;
-		totle = (MM+1)*600;
-		d = 180*(MM+1);
+	// alert(time);
+
+	i = 0;
+	j = 0;
+	count = 0;
+	MM =  time;
+	SS = 00;
+	MS = 00;
+	totle = (MM+1)*600;
+	d = 180*(MM+1);
 		//MM = "0" + MM;
 
 		
@@ -171,8 +174,10 @@
 		t1 = setInterval("start1()",100);
 
 		function stopTimer(){
+			//console.log(s+" "+t1);
 			clearInterval(s);
 			clearInterval(t1);
+			//console.log("click");
 		}
 
 		function startTimer(){
@@ -181,5 +186,5 @@
 			setInterval("start1()",100);
 		}
 	</script> 
-	</body>
+</body>
 </html>

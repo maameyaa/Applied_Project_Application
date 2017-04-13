@@ -126,6 +126,9 @@
              <span class="card-title">Teacher's Notes</span>
              <div class = "teachersnotes"></div>
             </div>
+             <div class="card-action ">
+              <a href="timerstart.html">Start Timer <i class="material-icons ">av_timer</i></a>
+            </div>
           </div>
         </div>
        </div>
@@ -146,6 +149,7 @@
     function getContent(){
        getWeekDay();
        getPhonics();
+       getTime();
     }
 
     function getWeekDay(){
@@ -235,6 +239,45 @@
            
             }
         }
+
+        function getTime(){
+        var ajaxPageUrl="timerajax.php?cmd=1&lid="+lesson_id+"";
+
+        $.ajax(ajaxPageUrl,
+          {async:true,
+           complete:getTimeComplete});
+    }
+
+     function getTimeComplete(xhr,status){
+       if(status!="success"){
+
+            $('#divStatus').html("Error while getting time");
+
+         return;    
+         }
+
+          var obj=$.parseJSON(xhr.responseText);
+          console.log(obj);
+
+          //alert(obj);
+
+          if(obj.result==0){
+
+          $('#divStatus').html("Error getting time");
+          return;
+
+          }
+
+          else{
+
+            sessionStorage.mintime = obj[0].phonics_min;
+            sessionStorage.maxtime = obj[0].phonics_max;
+
+            //alert( sessionStorage.mintime);
+            // alert( sessionStorage.maxtime);
+
+          }
+        }
     </script>
   </body>
 
@@ -253,5 +296,5 @@
             </div>
             
           </div>
-        </footer>
+  </footer>
 </html>

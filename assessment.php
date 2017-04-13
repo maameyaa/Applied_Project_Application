@@ -87,4 +87,12 @@ class assessment extends adb{
 						return $this->query($strQuery);
 
 	}
+
+	function getTLMS (){
+
+		$strQuery="SELECT * FROM  uploads";
+
+		return $this->query($strQuery);
+
+	}
 }
