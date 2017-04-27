@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title> PrepApp- Assessment</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+<body>
+  <nav class="light-blue lighten-1" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo"><i class="large material-icons right">cloud</i></a>
+        <li><a class='dropdown-button btn' href="#" data-activates='dropdown1' color='light-blue'>Menu</a></li>
+
+        <!-- Drop down menu -->
+       <ul id='dropdown1' class='dropdown-content'>
+          <li><a href="dashboard.html">Dashboard</a></li>
+          <li><a href="lessons.html">Lessons</a></li>
+           <li><a href="timer.html">Timer </a></li>
+          <li><a href="assesment.html">Assessment</a></li>
+          <li><a href="profile.html">Teaching and Learning Materials</a></li>
+          <li class="divider"></li>
+          <li><a href="index.html">Logout</a></li>
+        </ul>
+      </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+          <li><a href="dashboard.html">Dashboard</a></li>
+          <li><a href="lessons.html">Lessons</a></li>
+           <li><a href="timer.html">Timer </a></li>
+          <li><a href="assesment.html">Assessment</a></li>
+          <li><a href="profile.html">Teaching and Learning Materials</a></li>
+          <li class="divider"></li>
+          <li><a href="index.html">Logout</a></li>
+          </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="section">
+     
+     <!-- Assessment Form -->
+
+  <div class="row">
+  <center><h5>Assessment Form - Details</h5></center>
+    
+      <div class="row">
+
+      <center>
+
+        <div class="input-field col s4"></div>
+        <div class="input-field col s4">
+          <input id="coach_firstname" type="text">
+           <label> Coach's Username</label>
+          
+        </div>
+
+      </center>
+
+
+      </div>
+
+       <br></br>
+      <div class="row">
+
+      <center>
+       <div class="input-field col s4"></div>
+        <div class="input-field col s4">
+          <input  id="first_name" type="text" >
+          <label> Teacher's Username</label>
+          
+        </div>
+    
+      </center>
+
+      </div>
+
+      <br></br>
+
+      <div class="row">
+        <div class = "col s3"></div>
+        <div class="input-field col s3">
+          <input type="number" name="quantity" min="1" max="20">
+          <label> Lesson Week</label>
+        </div>
+        <div class="input-field col s3">
+          <input type="number" name="quantity" min="1" max="5">
+          <label>Lesson Day</label>
+        </div>
+
+         <br></br>
+         <br></br>
+         <!-- <br></br> -->
+
+        <div class= "col s3"></div><div class= "col s3" ></div><div class= "col s3"></div>
+        <div class= "col s3">
+           <a onclick= "getCoach()" class="right waves-effect waves-light btn">Next</a></div>
+      </div>
+ 
+      </div>
+    </div>
+  </div>
+
+  
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
+
+  <script type="text/javascript">
+
+  function getTeacher(){
+        var first_name = $('#first_name').val(); 
+        var last_name = $('#last_name').val(); 
+
+        var ajaxPageUrl="http://mtlp-application.000webhostapp.com/Applied_Project_Application/userajax.php?cmd=2&first_name="+first_name;
+
+        //alert("Here1");
+
+        $.ajax(ajaxPageUrl,
+          {async:true,
+           complete:getTeacherComplete});
+    }
+
+    function getCoach(){
+        var first_name = $('#coach_firstname').val(); 
+        var last_name = $('#coach_lastname').val(); 
+
+        var ajaxPageUrl="http://mtlp-application.000webhostapp.com/Applied_Project_Application/userajax.php?cmd=3&first_name="+first_name;
+
+       // alert(ajaxPageUrl);
+
+        $.ajax(ajaxPageUrl,
+          {async:true,
+           complete:getCoachComplete});
+    }
+
+    function getCoachComplete(xhr,status){
+      if(status!="success"){
+
+            $('#divStatus').html("Error while getting Teacher");
+
+         return;    
+         }
+          var obj=$.parseJSON(xhr.responseText);
+          console.log(obj);
+
+
+          if(obj.result==0){
+
+          $('#divStatus').html("Error getting Teacher");
+          return;
+
+          }
+
+          else{
+              //alert("here");
+              getTeacher();
+            }
+    }
+
+    function getTeacherComplete(xhr,status){
+      if(status!="success"){
+
+            $('#divStatus').html("Error while getting Teacher");
+
+         return;    
+         }
+          var obj=$.parseJSON(xhr.responseText);
+          console.log(obj);
+
+
+          if(obj.result==0){
+
+          $('#divStatus').html("Error getting Teacher");
+          return;
+
+          }
+
+          else{
+              createassessment();
+            }
+    }
+
+    function createassessment(){
+      var week = $('#week').val(); 
+      var day = $('#day').val(); 
+
+      sessionStorage.week=week;
+      sessionStorage.day=day;
+
+       window.location.href ="assessmentsubmit.html";
+
+      
+    }
+
+
+  </script>
+
+  </body>
+</html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title> MTLP - Profile</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+  <link href="styles.css" rel="stylesheet" type="text/css" />
+  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<body onload="getContent()">
+  <nav class="light-blue lighten-1" role="navigation">
+   <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo"><i class="large material-icons right">cloud</i></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a class='dropdown-button btn' href="#" data-activates='dropdown1' color='light-blue'>Menu</a></li>
+
+        <!-- Drop down menu -->
+        <ul id='dropdown1' class='dropdown-content'>
+          <li><a href="dashboard.html">Dashboard</a></li>
+          <li><a href="lessons.html">Lessons</a></li>
+           <li><a href="timer.html">Timer </a></li>
+          <li><a href="assesment.html">Assessment</a></li>
+          <li><a href="profile.html">Teaching and Learning Materials</a></li>
+          <li class="divider"></li>
+          <li><a href="index.html">Logout</a></li>
+        </ul>
+      </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+          <li><a href="dashboard.html">Dashboard</a></li>
+          <li><a href="lessons.html">Lessons</a></li>
+           <li><a href="timer.html">Timer </a></li>
+          <li><a href="assesment.html">Assessment</a></li>
+          <li><a href="profile.html">Teaching and Learning Materials</a></li>
+          <li class="divider"></li>
+          <li><a href="index.html">Logout</a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="section">
+        
+      
+
+       <h4>Teaching and Learning Materials</h4> 
+
+
+        <div id="test-swipe-3" class="col s12 ">
+       
+          <a class="waves-effect waves-light btn right" href="uploadTLMS.html" dcolor='light-blue'> Upload</a>
+
+          <br></br>
+
+           <center><div id="divStatus" class="status"></div></center> 
+
+        <div class ="images"></div>
+          
+
+
+        </div>  
+
+    </div>
+
+  </div>
+  
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
+
+  <script type="text/javascript">
+
+    function getContent(){
+       getAssessments();
+       getTlms();
+    }
+      
+    function getAssessments(){
+        var ajaxPageUrl="http://mtlp-application.000webhostapp.com/Applied_Project_Application/assessmentajax.php?cmd=5";
+
+        $.ajax(ajaxPageUrl,
+          {async:true,
+           complete: getAssessmentscomplete});
+    }
+
+
+    function getAssessmentscomplete(xhr,status){
+      if(status!="success"){
+
+            $('#divStatus').html("Error while getting Assessments");
+
+         return;    
+         }
+
+          var obj=$.parseJSON(xhr.responseText);
+          console.log(obj.result);
+
+
+          if(obj.result==0){
+
+          $('#divStatus').html("No Assessments");
+          return;
+
+          }
+
+          else{
+            var length=obj.length;
+            var count=1;
+
+            for(var i=0; i<length; i++){
+              $('.twi-row').append
+              ("<a id='"+i+"'>"+ "<div class='card' onclick='clicked("+obj[i].lesson_id+",&apos;"+obj[i].language+"&apos;)' class='rowgrid'"+"<h3 class=''>Assessment "+count+":  Week "+obj[i].week+" Day "+obj[i].day+ "</h5><br></br>"
+                )
+              count ++;
+            }
+          }
+    }
+
+    function getTlms(){
+       var ajaxPageUrl="http://mtlp-application.000webhostapp.com/Applied_Project_Application/uploadajax.php?cmd=1";
+
+        $.ajax(ajaxPageUrl,
+          {async:true,
+           complete: getTlmscomplete});
+    }
+
+    function getTlmscomplete(xhr,status){
+
+      if(status!="success"){
+
+            $('#divStatus').html("Error while getting images");
+
+         return;    
+         }
+
+          var obj=$.parseJSON(xhr.responseText);
+
+          console.log(obj);
+
+
+          if(obj.result==0){
+
+          $('#divStatus').html("No Assessments");
+          return;
+
+          }
+
+          else{
+            var length=obj.length;
+            var count=1;
+
+            for(var i=0; i<length; i++){
+
+              $('.images').append
+              ("<img src="+obj[i].image+"  class='img-thumbnail'><h3 class=''><div><h5> Week "+obj[i].week+" Day "+obj[i].day+ " - "+obj[i].uploadname+"</h5><div>")
+
+
+              count ++;
+            }
+          }
+      
+    }
+  </script>
+
+  </body>
+</html>

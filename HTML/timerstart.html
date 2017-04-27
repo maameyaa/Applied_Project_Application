@@ -32,7 +32,7 @@
 	</style>
 </head>
 
-<body>
+<body onload="getTitle()">
 
 	<nav class="light-blue lighten-1" role="navigation">
 		<div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo"><i class="large material-icons right">cloud</i></a>
@@ -41,24 +41,25 @@
 
 				<!-- Drop down menu -->
 				<ul id='dropdown1' class='dropdown-content'>
-					<li><a href="dashboard.html">Dashboard</a></li>
-					<li><a href="profile.html">Profile</a></li>
-					<li><a href="lessons.html">Lessons</a></li>
-					<li><a href="timer.html">Teaching </a></li>
-					<li><a href="assesment.html">Coahing</a></li>
-					<li class="divider"></li>
-					<li><a href="logout.html">Logout</a></li>
-				</ul>
-			</ul>
+		          <li><a href="dashboard.html">Dashboard</a></li>
+		          <li><a href="lessons.html">Lessons</a></li>
+		           <li><a href="timer.html">Timer </a></li>
+		          <li><a href="assesment.html">Assessment</a></li>
+		          <li><a href="profile.html">Teaching and Learning Materials</a></li>
+		          <li class="divider"></li>
+		          <li><a href="index.html">Logout</a></li>
+		        </ul>
+		      </ul>
 
-			<ul id="nav-mobile" class="side-nav">
-				<li><a href="dashboard.html">Dashboard</a></li>
-				<li><a href="profile.html">Profile</a></li>
-				<li><a href="lessons.html">Lessons</a></li>
-				<li><a href="timer.html">Teaching </a></li>
-				<li><a href="assesment.html">Coahing</a></li>
-				<li><a href="logout.html">Logout</a></li>
-			</ul>
+		      <ul id="nav-mobile" class="side-nav">
+		          <li><a href="dashboard.html">Dashboard</a></li>
+		          <li><a href="lessons.html">Lessons</a></li>
+		           <li><a href="timer.html">Timer </a></li>
+		          <li><a href="assesment.html">Assessment</a></li>
+		          <li><a href="profile.html">Teaching and Learning Materials</a></li>
+		          <li class="divider"></li>
+		          <li><a href="index.html">Logout</a></li>
+		      </ul>
 			<a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
 		</div>
 	</nav>
@@ -66,7 +67,7 @@
 	<div class="container">
 		<div syle="text-align:center">
 			<h3 class="timerhead">Timer</h3>
-			<h4 class="timerhead">English Lesson  - Revision</h3>
+			<h4 class="sub"></h3>
 			<br></br>
 		</div>
 		<div class="row">
@@ -103,6 +104,11 @@
 	          		<br></br>
 	          		<br></br>
 	          </div>
+           <!--  <div class="row">
+	          		<div  class = "right"> <a onclick= "tcontinue()" class="right waves-effect waves-light btn">Next Section</a></div>
+	          		<br></br>
+	          		<br></br>
+	          </div> -->
 	        </div>
 		</div>
 		
@@ -115,22 +121,47 @@
 	<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script> 
 
 	<script>
-		var time = sessionStorage.mintime;
+        
+        function back(){
+           document.referrer;
+        }
+        
+        function getTitle(){
+             $('.sub').append
+              ("<center><span>"+sessionStorage.lang+" Lesson - "+sessionStorage.section+"</span></center>"
+                );
+        }
+        
+        
+        if(sessionStorage.count==0){
 
-	// alert(time);
 
-	i = 0;
-	j = 0;
-	count = 0;
-	MM =  5;
-	SS = 00;
-	MS = 00;
-	totle = (MM+1)*600;
-	d = 180*(MM+1);
+        	var time = sessionStorage.mintime;
+
+        }
+
+		
+
+        // alert(time);
+
+        lang = sessionStorage.lang;
+        
+       // alert(lang);
+    
+
+
+        i = 0;
+        j = 0;
+        count = 0;
+        MM = time;
+        SS = 00;
+        MS = 00;
+        totle = (MM+1)*600;
+        d = 180*(MM+1);
 
 
 
-		//MM = "0" + MM;
+            //MM = "0" + MM;
 
 		
 		function showTime(){
@@ -158,8 +189,26 @@
 					if(MM < 10){MM = "0" + MM};
 				};
 			};
-			$(".time span").html(MM + ":" + SS + ":" + MS);
+			$(".time span").html(MM + ":" + SS ) 
+            
+            
+
+            if(MM == 0 && SS == 0){
+                
+                var audio = new Audio('audio/beep.mp3');
+
+                var i = 0;
+
+				do {
+				   audio.play(); 
+				    i++;
+				}
+				while (i < 3);            
+                
+                tcontinue(); 
+            }
 		};
+        
 		s = setInterval("showTime()",100);
 
 
@@ -204,6 +253,97 @@
 			
 			setInterval("start1()",100);
 		}
+        
+        
+        
+        function tcontinue(){
+            
+            stopTimer();
+            
+            lang = sessionStorage.lang;
+            
+            if(lang == "Twi" ){
+                
+               // alert (sessionStorage.count);
+                
+                count = sessionStorage.count;
+                
+                count ++;
+                       
+              //  alert(count);
+                
+               switch(count) {                
+                    case 1:
+                        sessionStorage.section = "Phonemic Awareness" ;
+                        time = sessionStorage.phonemic;
+                         //alert (time);
+                        break;
+                    case 2:
+                        sessionStorage.section = "Phonics";
+                        time = sessionStorage.phonics ;
+                        //alert (time);
+                        break;
+                    case 3:
+                        sessionStorage.section = "Reading Comprehesion" ;
+                        time = sessionStorage.readingComp ;
+                        break;
+                    case 4:
+                        sessionStorage.section = "Fluency";
+                        time = sessionStorage.fluency ;
+                        break;
+                    case 5:
+                        sessionStorage.section = "Vocabulary";
+                        time = sessionStorage.vocab;
+                        break;
+                     case 4:
+                        sessionStorage.section = "Writing";
+                        time = sessionStorage.writing ;
+                        break;
+                    case 5:
+                        sessionStorage.section = "Looking Ahead";
+                        time =  sessionStorage.lookingAhead  ;
+                        break;
+                  
+                  
+                }
+            }
+            
+            if(lang == "English" ){
+               // alert (sessionStorage.count);
+                
+                count = sessionStorage.count;
+                
+                count ++;
+                       
+               // alert(count);
+                
+               switch(count) {                
+                    case 1:
+                        sessionStorage.section = "Phonemic Awareness" ;
+                        time = sessionStorage.phonemic;
+                         //alert (time);
+                        break;
+                    case 2:
+                        sessionStorage.section = "Vocabulary";
+                        time = sessionStorage.vocab;
+                        break;
+                    case 3:
+                        sessionStorage.section = "Comprehesion and Communications" ;
+                        time = sessionStorage.comp ;
+                        break;
+                    case 4:
+                        sessionStorage.section = "Looking Ahead";
+                        time =  sessionStorage.lookingAhead  ;
+                        break;                  
+                }
+                
+            }
+            
+             window.location.href ="timerstart.html";
+            
+        }
+        
+
 	</script> 
 </body>
 </html>
