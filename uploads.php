@@ -1,5 +1,8 @@
 <?php
 
+/**
+*Adapted from Aelaf Dafla's Webtech Course Resource
+*/
 include_once("adb.php");
 
 /**
@@ -14,15 +17,26 @@ class uploads extends adb{
 	}
 
 
+/**
+	*gets teaching and learning materials photos
+	*@param string mixed condition to filter. If  false, then filter will not be applied
+	*@return boolean true if successful, else false
+	*/
+
 	function getTLMS (){
 
 			$strQuery="SELECT * FROM  uploads";
+			
 
 			return $this->query($strQuery);
 
 		}
 
-	}
+	/**
+	*uploads teaching and learning materials photos to the database
+	*@param string mixed condition to filter. If  false, then filter will not be applied
+	*@return boolean true if successful, else false
+	*/
 
 	function uploadfile($uploadname, $week,$day,$image){
 
@@ -35,5 +49,6 @@ class uploads extends adb{
 						return $this->query($strQuery);
 
 	}
+}
 
 ?>

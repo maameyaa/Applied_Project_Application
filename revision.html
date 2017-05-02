@@ -22,22 +22,23 @@
         <!-- Drop down menu -->
         <ul id='dropdown1' class='dropdown-content'>
           <li><a href="dashboard.html">Dashboard</a></li>
-          <li><a href="profile.html">Profile</a></li>
           <li><a href="lessons.html">Lessons</a></li>
-          <li><a href="timer.html">Teaching </a></li>
-          <li><a href="assesment.html">Coahing</a></li>
+           <li><a href="timer.html">Timer </a></li>
+          <li><a href="assesment.html">Assessment</a></li>
+          <li><a href="profile.html">Teaching and Learning Materials</a></li>
           <li class="divider"></li>
-          <li><a href="logout.html">Logout</a></li>
+          <li><a href="index.html">Logout</a></li>
         </ul>
       </ul>
 
       <ul id="nav-mobile" class="side-nav">
-         <li><a href="dashboard.html">Dashboard</a></li>
-          <li><a href="profile.html">Profile</a></li>
+          <li><a href="dashboard.html">Dashboard</a></li>
           <li><a href="lessons.html">Lessons</a></li>
-          <li><a href="timer.html">Teaching </a></li>
-          <li><a href="assesment.html">Coahing</a></li>
-          <li><a href="logout.html">Logout</a></li>
+           <li><a href="timer.html">Timer </a></li>
+          <li><a href="assesment.html">Assessment</a></li>
+          <li><a href="profile.html">Teaching and Learning Materials</a></li>
+          <li class="divider"></li>
+          <li><a href="index.html">Logout</a></li>
       </ul>
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
@@ -211,6 +212,22 @@
 
             sessionStorage.mintime = obj[0].revision_min;
             sessionStorage.maxtime = obj[0].revision_max;
+              
+            sessionStorage.phonemic = obj[0].phonemic_min;
+            sessionStorage.vocab = obj[0].vocab_min;
+            sessionStorage.comp = obj[0].comp_min;
+            sessionStorage.lookingAhead = obj[0].lookingAhead_min;
+              
+            sessionStorage.readingComp = obj[0].readingComp_min;
+            sessionStorage.phonics = obj[0].phonics_min;  
+            sessionStorage.writing = obj[0].writing_min;  
+            sessionStorage.fluency = obj[0].fluency_min;  
+              
+            sessionStorage.count = 0;
+              
+              
+        
+            sessionStorage.section = "Revision";
 
             //alert( sessionStorage.mintime);
             // alert( sessionStorage.maxtime);
@@ -220,7 +237,7 @@
     </script>
   </body>
 
-   <!-- <footer class="light-blue darken-1">
+ <footer class="light-blue darken-1">
           <div class="footer-copyright" >
             <div class="container">
 
@@ -236,5 +253,5 @@
             </div>
             
           </div>
-  </footer> -->
+  </footer>
 </html>

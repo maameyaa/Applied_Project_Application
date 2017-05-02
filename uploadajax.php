@@ -1,4 +1,10 @@
 <?php
+/**
+*Maame Yaa Afriyie Poku
+*Ajax php for the timer class
+*/  
+
+
 if(!isset($_REQUEST['cmd'])){
 
 	  echo "Command not provided";
@@ -19,6 +25,9 @@ $cmd=$_REQUEST['cmd'];
 		break;
 }
 
+/**
+*This function calls the uploads's class to get the pictures uoploaded and returns the result 
+*/
 function getTlms(){
 
 		include_once("uploads.php");
@@ -45,13 +54,16 @@ function getTlms(){
 	  	}
 
 	  	else{
-	  		$new = new getTLMS();
+	  		$new = new uploads();
             $obj= $new->getTLMS();
 
 	  		while($one=$new->fetch()){
 	  			$array[] = $one;
-	  		}
+	  		}	  		
+
 	  		echo json_encode($array);
+        
 	  		//print_r($array)
 	}
+}
 ?>

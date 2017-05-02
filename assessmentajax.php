@@ -34,8 +34,16 @@
 		case 4: 
 		addAnswers();
 		break;
+            
+        case 5: 
+		getassessment();
+		break;
 
 	}
+
+/**
+*This function calls the assessment class to create the assessments and returns the result 
+*/
 
 function createAssessment(){
 
@@ -68,7 +76,9 @@ function createAssessment(){
 	  		echo '{"result":1,"message":"Assessment created"}';
 	  	}
 	}
-
+/**
+*This function calls the assessment class to get the questions and returns the result 
+*/
 function searchQuestions(){
 
 		include_once("assessment.php");
@@ -103,8 +113,12 @@ function searchQuestions(){
 	  		}
 	  		echo json_encode($array);
 	  		//print_r($array)
+        }
 	}
 
+/**
+*This function calls the assessment class to get the answers and returns the result 
+*/
 	function searchAnswers(){
 
 		include_once("assessment.php");
@@ -139,8 +153,12 @@ function searchQuestions(){
 	  		}
 	  		echo json_encode($array);
 	  		//print_r($array)
+        }
 	}
 
+/**
+*This function calls the assessment class to insert the answers of the assessment and returns the result 
+*/
 	function addAnswers(){
 
 		include_once("assessment.php");
@@ -175,6 +193,42 @@ function searchQuestions(){
 	  		}
 	  		echo json_encode($array);
 	  		//print_r($array)
-	}
+	   }
+    }
+
+/**
+*This function calls the assessment class fetch the assessments and returns the result 
+*/ 
+    function getassessment(){
+    include_once("assessment.php");
+		$obj = new assessment();
+
+//		if(!isset($_REQUEST['lang'])){
+//			echo "lang not provided";
+//
+//		}
+
+		//$lang = $_REQUEST["lang"];
+		// $week	=$_REQUEST["week"];
+	 //  	$day=$_REQUEST["day"];
+
+	  	$row=$obj->getassessment();
+        
+	  	$results=$obj->fetch();
+
+	  	if(!$results){
+	  		echo '{"result":0,"message":"Error"}';
+	  		return;
+	  	}
+
+	  	else{
+	  		$new = new assessment();
+            $obj= $new->getassessment();
+	  		while($one=$new->fetch()){
+	  			$array[] = $one;
+	  		}
+	  		echo json_encode($array);
+	  	}
+    }
 
 ?>

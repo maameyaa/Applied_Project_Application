@@ -1,4 +1,14 @@
 <?php
+
+/**
+*Source: PHP Pot : PHP AJAX Image Upload
+*www.phppot.com/php/php-ajax-image-upload/
+*/
+
+/**
+*Saves the incoming image into a folder
+*/
+
 if(is_array($_FILES)) {
 	if(is_uploaded_file($_FILES['userImage']['tmp_name'])) {
 
@@ -13,7 +23,7 @@ if(is_array($_FILES)) {
 			<img class="image-preview" src="<?php echo $targetPath; ?>" class="upload-preview" />
 			<?php
 
-			echo($targetPath);
+			echo($filename);
 
 			include_once ("uploads.php");
 			$obj=new uploads();
@@ -26,7 +36,7 @@ if(is_array($_FILES)) {
 			  	}
 
 			  else{
-			  		echo '{"result":1,"message":"Uploaded"}';
+			  		echo ' Uploaded';
 			  	}
 
 

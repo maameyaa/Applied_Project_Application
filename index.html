@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <!-- This file has been downloaded from Bootsnipp.com. Enjoy! -->
-    <title>PrepApp- Login</title>
+    <title>MTLP- Login</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
     <style type="text/css">
@@ -110,6 +110,10 @@
 		.status {
   			color: red;
   		}
+
+  		.heading{
+  			color: #53A3CD;
+  		}
     </style>
 
 
@@ -134,6 +138,8 @@
 <div class="container">
     	<div class="row">
 			<div class="col-md-6 col-md-offset-3">
+			<center><h2 class="heading"> MTLP</hb></center>
+			  	<br></br>
 				<div class="panel panel-login">
 					<div class="panel-heading">
 						<div class="row">
@@ -194,7 +200,7 @@
 									<div class="form-group">
 										<div class="row">
 											<div class="col-sm-6 col-sm-offset-3">
-												<input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="Register Now">
+												<button  name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" onclick = "register()" >Register Now</button>
 											</div>
 										</div>
 									</div>
@@ -227,6 +233,13 @@ $(function() {
 	});
 
 });
+
+function register(){
+
+	alert("You have registered successfully");
+
+	window.location.href ="dashboard.html";
+}
 
 
 function login(){

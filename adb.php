@@ -1,5 +1,8 @@
 <?php
 /**
+*Source: Aelaf Dafla
+*Adapted from Webtech Course Resource
+
 *Database connection helper
 */
 include_once("setting.php");

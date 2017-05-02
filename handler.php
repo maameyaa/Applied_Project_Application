@@ -1,5 +1,14 @@
 <?php
 
+/**
+*Source: PHP Pot : PHP AJAX Image Upload
+*www.phppot.com/php/php-ajax-image-upload/
+*/
+
+/**
+*Makes conections to the database and saves the upload in the database
+*/
+
 include_once("setting.php");
 
 $link = mysqli_connect(DB_HOST,DB_USERNAME,DB_PASSWORD,DB_NAME);

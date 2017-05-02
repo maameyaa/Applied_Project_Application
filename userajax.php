@@ -1,5 +1,10 @@
 <?php
 
+/**
+*Maame Yaa Afriyie Poku
+*Ajax php for the users class
+*/  
+
 session_start();
 
 	if(!isset($_REQUEST['cmd'])){
@@ -26,6 +31,9 @@ session_start();
 		break;
 	}
 
+/**
+*This function calls the user's class check if the user exist in the database
+*/
 	function login(){
 
 		 include_once("users.php");
@@ -56,13 +64,16 @@ session_start();
 	}
 
 
+/**
+*This function calls the user's class check if the username exist in the database
+*/
 
 	function searchTeachers(){
 
 		 include_once("users.php");
 		 $obj=new users();
 
-		 if(!isset($_REQUEST['first_name'])||!isset($_REQUEST['last_name'])){
+		 if(!isset($_REQUEST['first_name'])){
 
 		 	echo '{"result":0,"message":"Please provide first name and last name"}';
 
@@ -70,10 +81,10 @@ session_start();
 		 }
 
 
-	  	$first_name	=$_REQUEST["first_name"];
-	  	$last_name=$_REQUEST["last_name"];
+	  	$username	=$_REQUEST["first_name"];
+	  	//$last_name=$_REQUEST["last_name"];
 
-	  	$row=$obj->searchTeachers($first_name,$last_name);
+	  	$row=$obj->searchTeachers($username);
 	  	$results=$obj->fetch();
 
 
@@ -91,13 +102,16 @@ session_start();
 	  }
 	}
 
+/**
+*This function calls the user's class check if the username exist in the database
+*/
 
 	function searchCoaches(){
 
 		 include_once("users.php");
 		 $obj=new users();
 
-		 if(!isset($_REQUEST['first_name'])||!isset($_REQUEST['last_name'])){
+		 if(!isset($_REQUEST['first_name'])){
 
 		 	echo '{"result":0,"message":"Please provide first name and last name"}';
 
@@ -105,10 +119,10 @@ session_start();
 		 }
 
 
-	  	$first_name	=$_REQUEST["first_name"];
-	  	$last_name=$_REQUEST["last_name"];
+	  	$username	=$_REQUEST["first_name"];
+	  	//$last_name=$_REQUEST["last_name"];
 
-	  	$row=$obj->searchTeachers($first_name,$last_name);
+	  	$row=$obj->searchTeachers($username);
 	  	$results=$obj->fetch();
 
 

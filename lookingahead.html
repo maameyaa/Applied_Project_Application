@@ -20,24 +20,25 @@
         <li><a class='dropdown-button btn' href="#" data-activates='dropdown1' color='light-blue'>Menu</a></li>
 
         <!-- Drop down menu -->
-        <ul id='dropdown1' class='dropdown-content'>
+       <ul id='dropdown1' class='dropdown-content'>
           <li><a href="dashboard.html">Dashboard</a></li>
-          <li><a href="profile.html">Profile</a></li>
           <li><a href="lessons.html">Lessons</a></li>
-          <li><a href="timer.html">Teaching </a></li>
-          <li><a href="assesment.html">Coahing</a></li>
+           <li><a href="timer.html">Timer </a></li>
+          <li><a href="assesment.html">Assessment</a></li>
+          <li><a href="profile.html">Teaching and Learning Materials</a></li>
           <li class="divider"></li>
-          <li><a href="logout.html">Logout</a></li>
+          <li><a href="index.html">Logout</a></li>
         </ul>
       </ul>
 
       <ul id="nav-mobile" class="side-nav">
-         <li><a href="dashboard.html">Dashboard</a></li>
-          <li><a href="profile.html">Profile</a></li>
+          <li><a href="dashboard.html">Dashboard</a></li>
           <li><a href="lessons.html">Lessons</a></li>
-          <li><a href="timer.html">Teaching </a></li>
-          <li><a href="assesment.html">Coahing</a></li>
-          <li><a href="logout.html">Logout</a></li>
+           <li><a href="timer.html">Timer </a></li>
+          <li><a href="assesment.html">Assessment</a></li>
+          <li><a href="profile.html">Teaching and Learning Materials</a></li>
+          <li class="divider"></li>
+          <li><a href="index.html">Logout</a></li>
       </ul>
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
@@ -54,6 +55,12 @@
               <div class='wd'> </div> 
           </div>
    </div>
+   <div class="row">
+              <div class= "col s12">
+                    <a onclick="nextpage()" class=" col s6">Back</a>
+                   <a   href ="lessons.html"class=" right">Back to Lessons</a>
+              </div>
+    </div>
 
       <center><div id="divStatus" class="status"></div></center>
 
@@ -109,6 +116,20 @@
        getLA();
        getTime();
     }
+
+     function nextpage(){
+      
+
+      if (lang=="Twi") {
+        
+        window.location.href ="writing.html"
+      }
+      else{
+        window.location.href ="comprehension.html"
+      }
+
+    }
+
 
     function getWeekDay(){
         var ajaxPageUrl="http://mtlp-application.000webhostapp.com/Applied_Project_Application/lessonajax.php?cmd=4&lid="+lesson_id+"";

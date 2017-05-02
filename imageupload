@@ -1,9 +1,0 @@
-<?php
-<form id="uploadForm" action="upload.php" method="post">
-<label>Upload Image File:</label><br/>
-<input name="userImage" type="file" class="inputFile" />
-<input type="submit" value="Submit" class="btnSubmit" />
-</form>
-
-
-?>

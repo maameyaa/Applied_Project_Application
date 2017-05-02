@@ -4,7 +4,7 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-  <title> MTLP - Profile</title>
+  <title> MTLP - Upload</title>
 
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -37,6 +37,8 @@
           {
           }           
         });
+
+        document.getElementById("submit").style.display = "none";
       }));
     });
 
@@ -70,29 +72,30 @@
 </head>
 <body>
   <nav class="light-blue lighten-1" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Logo</a>
+   <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo"><i class="large material-icons right">cloud</i></a>
       <ul class="right hide-on-med-and-down">
         <li><a class='dropdown-button btn' href="#" data-activates='dropdown1' color='light-blue'>Menu</a></li>
 
         <!-- Drop down menu -->
-        <ul id='dropdown1' class='dropdown-content'>
+      <ul id='dropdown1' class='dropdown-content'>
           <li><a href="dashboard.html">Dashboard</a></li>
-          <li><a href="profile.html">Profile</a></li>
           <li><a href="lessons.html">Lessons</a></li>
-          <li><a href="timer.html">Teaching </a></li>
-          <li><a href="assesment.html">Coahing</a></li>
+           <li><a href="timer.html">Timer </a></li>
+          <li><a href="assesment.html">Assessment</a></li>
+          <li><a href="profile.html">Teaching and Learning Materials</a></li>
           <li class="divider"></li>
-          <li><a href="logout.html">Logout</a></li>
+          <li><a href="index.html">Logout</a></li>
         </ul>
       </ul>
 
       <ul id="nav-mobile" class="side-nav">
-         <li><a href="dashboard.html">Dashboard</a></li>
-         <li><a href="profile.html">Profile</a></li>relative
+          <li><a href="dashboard.html">Dashboard</a></li>
           <li><a href="lessons.html">Lessons</a></li>
-          <li><a href="timer.html">Teaching </a></li>
-          <li><a href="assesment.html">Coahing</a></li>
-          <li><a href="logout.html">Logout</a></li>
+           <li><a href="timer.html">Timer </a></li>
+          <li><a href="assesment.html">Assessment</a></li>
+          <li><a href="profile.html">Teaching and Learning Materials</a></li>
+          <li class="divider"></li>
+          <li><a href="index.html">Logout</a></li>
       </ul>
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
@@ -102,17 +105,23 @@
     <div class="section">
 
     	<div class="bgColor">
+
+     <a id="" href="profile.html" class="">Back</a>
+
+      <center><h3> Upload Image </h3></center>
+
         <form id="uploadForm" action="upload.php" method="post">
         
         <div id="uploadFormLayer">
-        File Name : <input type="text" name="filename" class = "filename">
+        Name : <input type="text" name="filename" class = "filename">
         Lesson Week : <input type="number" name="week" class= "week">
         Lesson Day: <input type="number" name="day" class = "day">
         <input name="userImage" type="file" class="inputFile" /><br/>
         <center>
         	<div id="targetLayer">No Image</div>
         </center>
-        <input type="submit" value="Submit" class="btnSubmit" />
+        
+        <input type="submit" id ="submit" value="Submit" class="btnSubmit left" />
         </div>
         </form>
         </div>

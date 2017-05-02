@@ -12,41 +12,30 @@
 </head>
 <body>
   <nav class="light-blue lighten-1" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">MTLP</a>
-      <ul class="right hide-on-med-and-down">
+    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo"><i class="large material-icons right">cloud</i></a>
         <li><a class='dropdown-button btn' href="#" data-activates='dropdown1' color='light-blue'>Menu</a></li>
 
         <!-- Drop down menu -->
-        <ul id='dropdown1' class='dropdown-content'>
+       <ul id='dropdown1' class='dropdown-content'>
           <li><a href="dashboard.html">Dashboard</a></li>
-          <li><a href="profile.html">Profile</a></li>
           <li><a href="lessons.html">Lessons</a></li>
-          <li><a href="timer.html">Teaching </a></li>
-          <li><a href="assesment.html">Coahing</a></li>
+           <li><a href="timer.html">Timer </a></li>
+          <li><a href="assesment.html">Assessment</a></li>
+          <li><a href="profile.html">Teaching and Learning Materials</a></li>
           <li class="divider"></li>
-          <li><a href="logout.html">Logout</a></li>
+          <li><a href="index.html">Logout</a></li>
         </ul>
       </ul>
 
-      <!-- Side Navigation -->
       <ul id="nav-mobile" class="side-nav">
-          <!-- <li>
-            <div class="userView">
-                <div class="background">
-                  <img src="images/office.jpg">
-                </div>
-                <a href="#!user"><img class="circle" src="images/yuna.jpg"></a>
-                <a href="#!name"><span class="white-text name">John Doe</span></a>
-                <a href="#!email"><span class="white-text email">jdandturk@gmail.com</span></a>
-            </div>
-          </li> -->
           <li><a href="dashboard.html">Dashboard</a></li>
-          <li><a href="profile.html">Profile</a></li>
           <li><a href="lessons.html">Lessons</a></li>
-          <li><a href="timer.html">Teaching </a></li>
-          <li><a href="assesment.html">Coahing</a></li>
-          <li><a href="logout.html">Logout</a></li>
-      </ul>
+           <li><a href="timer.html">Timer </a></li>
+          <li><a href="assesment.html">Assessment</a></li>
+          <li><a href="profile.html">Teaching and Learning Materials</a></li>
+          <li class="divider"></li>
+          <li><a href="index.html">Logout</a></li>
+          </ul>
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
   </nav>
@@ -57,30 +46,37 @@
      <!-- Assessment Form -->
 
   <div class="row">
-  <h4>Assessment Form </h4>
+  <center><h5>Assessment Form - Details</h5></center>
     
       <div class="row">
-        <div class="input-field col s6">
-          <input placeholder="Coach's First Name" id="coach_firstname" type="text" class="validate">
+
+      <center>
+
+        <div class="input-field col s4"></div>
+        <div class="input-field col s4">
+          <input id="coach_firstname" type="text">
+           <label> Coach's Username</label>
           
         </div>
 
-        <div class="input-field col s6">
-          <input id="coach_lastname" placeholder="Coach's Last Name" type="text" class="validate">
-         
-        </div>
+      </center>
+
+
       </div>
 
        <br></br>
       <div class="row">
-        <div class="input-field col s6">
-          <input placeholder="Teacher's First Name" id="first_name" type="text" class="validate">
+
+      <center>
+       <div class="input-field col s4"></div>
+        <div class="input-field col s4">
+          <input  id="first_name" type="text" >
+          <label> Teacher's Username</label>
           
         </div>
-        <div class="input-field col s6">
-          <input id="last_name" placeholder="Teacher's Last Name" type="text" class="validate">
-         
-        </div>
+    
+      </center>
+
       </div>
 
       <br></br>
@@ -89,11 +85,11 @@
         <div class = "col s3"></div>
         <div class="input-field col s3">
           <input type="number" name="quantity" min="1" max="20">
-          <label for="disabled"> Lesson Week</label>
+          <label> Lesson Week</label>
         </div>
         <div class="input-field col s3">
           <input type="number" name="quantity" min="1" max="5">
-          <label for="disabled">Lesson Day</label>
+          <label>Lesson Day</label>
         </div>
 
          <br></br>
@@ -121,9 +117,9 @@
         var first_name = $('#first_name').val(); 
         var last_name = $('#last_name').val(); 
 
-        var ajaxPageUrl="http://mtlp-application.000webhostapp.com/Applied_Project_Application/userajax.php?cmd=2&first_name="+first_name+"&last_name="+last_name+"";
+        var ajaxPageUrl="http://mtlp-application.000webhostapp.com/Applied_Project_Application/userajax.php?cmd=2&first_name="+first_name;
 
-        alert("Here1");
+        //alert("Here1");
 
         $.ajax(ajaxPageUrl,
           {async:true,
@@ -134,9 +130,9 @@
         var first_name = $('#coach_firstname').val(); 
         var last_name = $('#coach_lastname').val(); 
 
-        var ajaxPageUrl="http://mtlp-application.000webhostapp.com/Applied_Project_Application/userajax.php?cmd=3&first_name="+first_name+"&last_name="+last_name+"";
+        var ajaxPageUrl="http://mtlp-application.000webhostapp.com/Applied_Project_Application/userajax.php?cmd=3&first_name="+first_name;
 
-        alert(ajaxPageUrl);
+       // alert(ajaxPageUrl);
 
         $.ajax(ajaxPageUrl,
           {async:true,
@@ -162,7 +158,7 @@
           }
 
           else{
-              alert("here");
+              //alert("here");
               getTeacher();
             }
     }

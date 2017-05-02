@@ -21,18 +21,15 @@ class users extends adb{
 	*@param string password login password
 	*@param string firstname first name
 	*@param string lastname last name
-	*@param int usergroup group id
-	*@param string status status of the user account
-	*@param string permission permission as an int
 	*@return boolean returns true if successful or false 
 	*/
-	function addUser($username,$password='none',$firstname='none',$lastname='none',
-		$usergroup=0,$status='none',$permission='none'){
+	function addUser($username,$password='none',$firstname='none',$lastname='none',$school='none',){
 		
 		$strQuery="INSERT INTO sweb_user SET
 					username = '$username',
 					password = '$password',
 					firstname = '$firstname',
+					school = '$school',
 					lastname = '$lastname'";
 		return $this->query($strQuery);				
 	}
@@ -51,9 +48,9 @@ class users extends adb{
 	}
 
 
-	function searchTeachers($text1, $text2){
+	function searchTeachers($text1){
 		
-		$strQuery="Select * from users where first_name = '$text1' and last_name = '$text2'";
+		$strQuery="Select * from users where user_name = '$text1'";
 
 		return $this->query($strQuery);
 	}

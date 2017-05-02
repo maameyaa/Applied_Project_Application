@@ -1,12 +1,11 @@
 <?php
 /**
-*Maame Yaa Afriyie Poku
-*Adapted from Mr Dafla's Webtech code
+*Adapted from Aelaf Dafla's Webtech Course Resource
 */
 include_once("adb.php");
 
 /**
-*Lesson  class
+*Assessment  class
 */
 class assessment extends adb{
 
@@ -32,6 +31,19 @@ class assessment extends adb{
 
 	}
 
+    function getassessment($filter=false){
+
+		$strQuery="SELECT * FROM  assessment";
+		
+		if($filter){
+			$strQuery=$strQuery . " where $filter";
+			
+		}
+		
+		return $this->query($strQuery);
+	}
+    
+    
 	function getquestions($filter=false){
 
 		$strQuery="SELECT * FROM  question";

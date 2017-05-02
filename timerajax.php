@@ -1,4 +1,9 @@
 <?php
+
+/**
+*Maame Yaa Afriyie Poku
+*Ajax php for the timer class
+*/
 	if(!isset($_REQUEST['cmd'])){
 
 	  echo "Command not provided";
@@ -16,7 +21,11 @@
 
 	}
 
-	function getTIme(){
+/**
+*This function calls the lesson's class to get the time for the lesson and returns the result 
+*/
+
+	function gettime(){
 		include_once("lesson.php");
 		$obj = new lessons();
 
